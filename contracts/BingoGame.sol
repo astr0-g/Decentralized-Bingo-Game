@@ -199,7 +199,7 @@ contract Bingo {
     // function readPlayerGameBoardMatchs(
     //     address _player,
     //     uint256 _gameRound
-    // ) public view returns ([] memory) {
+    // ) public view returns (uint256[] memory) {
     //     return (gameRounds[_gameRound].players[_player].gameBoardMatchs);
     // }
 
