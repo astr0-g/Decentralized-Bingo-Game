@@ -7,7 +7,8 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
     log("-----------------")
-    arguments = []
+    const BingoToken = await deployments.get("BingoToken")
+    arguments = [BingoToken.address]
     const Bingo = await deploy("Bingo", {
         from: deployer,
         args: arguments,

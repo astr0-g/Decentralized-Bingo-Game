@@ -7,8 +7,9 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
     log("-----------------")
+    
     arguments = []
-    const Bingo = await deploy("Bingo", {
+    const BingoToken = await deploy("BingoToken", {
         from: deployer,
         args: arguments,
         log: true,
@@ -17,7 +18,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("verifying...")
-        await verify(Bingo.address, arguments)
+        await verify(BingoToken.address, arguments)
     }
     log("-----------------")
 }
