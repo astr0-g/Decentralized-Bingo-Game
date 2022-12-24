@@ -119,7 +119,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                       joinDuration.toNumber() + turnDuration.toNumber() + 1,
                   ])
                   await Bingo.connect(player1).drawWinnerOrClaimRewrads(gameRoundNow)
-                  await Bingo.connect(player2).drawWinnerOrClaimRewrads(gameRoundNow)
+                //   await Bingo.connect(player2).drawWinnerOrClaimRewrads(gameRoundNow)
               })
           })
       })
