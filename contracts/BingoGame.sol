@@ -85,17 +85,21 @@ contract Bingo {
             gameRounds[_gameRound].startTime + joinDuration + turnDuration
         ) revert error__drawsNotStared();
         if (gameRounds[_gameRound].drawing) revert error__winnerIsDarwing();
+
+        /// @notice Start drawing
         gameRounds[_gameRound].drawing = true;
         _;
+        /// @notice Stop drawing
         gameRounds[_gameRound].drawing = false;
     }
-
+    /// @notice Deploying Bingo Token first before deploying this contract
     constructor(address _bingoTokenAddress) {
         BingoToken = _bingoTokenAddress;
         admin = msg.sender;
     }
-
+    /// @notice player start a new with game board generated
     function startNewGameWithBet() public {
+        /// @notice Send Bingo Token to this contract, and check transaction success  
         if (
             IERC20(BingoToken).transferFrom(
                 msg.sender,
@@ -103,12 +107,17 @@ contract Bingo {
                 betAmountForBINGO
             ) != true
         ) revert erorr__entryFee();
+        /// @notice Make a new game round
         unchecked {
             ++gameRoundNow;
         }
+        /// @notice Save game round Id into this function 
         uint256 gameRoundnow = gameRoundNow;
+        /// @notice Save game round start time
         gameRounds[gameRoundnow].startTime = block.timestamp;
+        /// @notice Generating player game board for this round
         playerGenerateGameBoard(msg.sender, gameRoundnow);
+        /// @notice Emit 'Created' event
         emit Created(msg.sender, gameRoundnow, block.timestamp);
     }
 
