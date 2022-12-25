@@ -161,8 +161,8 @@ function display5x5matrix(e) {
             joinDuration.toNumber() + turnDuration.toNumber() + 1,
           ]);
           // console.log(`player draw results and claim winning.`);
-          await Bingo.connect(player1).drawWinnerOrClaimRewrads(gameRoundNow);
-          await Bingo.connect(player2).drawWinnerOrClaimRewrads(gameRoundNow);
+          await Bingo.connect(player1).drawWinnerOrClaimPrize(gameRoundNow);
+          await Bingo.connect(player2).drawWinnerOrClaimPrize(gameRoundNow);
           const player1balance = await BingoToken.balanceOf(player1.address);
           const player2balance = await BingoToken.balanceOf(player2.address);
           const player3balance = await BingoToken.balanceOf(player3.address);
@@ -244,9 +244,9 @@ function display5x5matrix(e) {
               joinDuration.toNumber() + turnDuration.toNumber() + 1,
             ]);
             // console.log(`player draw results and claim winning.`);
-            await Bingo.connect(player1).drawWinnerOrClaimRewrads(gameRoundNow);
-            await Bingo.connect(player2).drawWinnerOrClaimRewrads(gameRoundNow);
-            await Bingo.connect(player3).drawWinnerOrClaimRewrads(gameRoundNow);
+            await Bingo.connect(player1).drawWinnerOrClaimPrize(gameRoundNow);
+            await Bingo.connect(player2).drawWinnerOrClaimPrize(gameRoundNow);
+            await Bingo.connect(player3).drawWinnerOrClaimPrize(gameRoundNow);
             const player1balance = await BingoToken.balanceOf(player1.address);
             const player2balance = await BingoToken.balanceOf(player2.address);
             const player3balance = await BingoToken.balanceOf(player3.address);
