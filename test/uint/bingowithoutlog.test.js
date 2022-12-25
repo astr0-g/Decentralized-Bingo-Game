@@ -94,8 +94,8 @@ function display5x5matrix(e) {
             deployer,
             gameRoundNow
           );
-          console.log(`player playBoardNumbers:`);
-          display5x5matrix(playercards);
+          // console.log(`player playBoardNumbers:`);
+          // display5x5matrix(playercards);
         });
         it("two players join same game and check their game board", async () => {
           await BingoToken.connect(player1).mint();
@@ -123,15 +123,15 @@ function display5x5matrix(e) {
           //   console.log(`player 2 playBoardNumbers:${player2cards.toString()}`);
         });
         it("two players join same game and check their awards", async () => {
-          console.log(`Game strating...`);
-          console.log(`player 1 joinning...`);
+          // console.log(`Game strating...`);
+          // console.log(`player 1 joinning...`);
           await BingoToken.connect(player1).mint();
           await BingoToken.connect(player1).approve(Bingo.address, fee);
           await Bingo.connect(player1).startNewGameWithBet();
           const result = await BingoToken.balanceOf(Bingo.address);
           assert.equal(result.toString(), 1 * 10 ** 18);
           const gameRoundNow = await Bingo.gameRoundNow();
-          console.log(`player 2 joinning...`);
+          // console.log(`player 2 joinning...`);
           await BingoToken.connect(player2).mint();
           await BingoToken.connect(player2).approve(Bingo.address, fee);
           await Bingo.connect(player2).joinCurrentGameWithBet(gameRoundNow);
@@ -142,33 +142,32 @@ function display5x5matrix(e) {
             player1.address,
             gameRoundNow
           );
-          console.log(`player 1 playBoardNumbers:`);
-          console.log(`-------------------------------`);
-          display5x5matrix(player1cards);
-          console.log(`-------------------------------`);
-          //   const array1 = JSON.parse(array.slice(0, 5));
+          // console.log(`player 1 playBoardNumbers:`);
+          // console.log(`-------------------------------`);
+          // display5x5matrix(player1cards);
+          // console.log(`-------------------------------`);
           const player2cards = await Bingo.getPlayerGameBoard(
             player2.address,
             gameRoundNow
           );
-          console.log(`player 2 playBoardNumbers:`);
-          console.log(`-------------------------------`);
-          display5x5matrix(player2cards);
-          console.log(`-------------------------------`);
+          // console.log(`player 2 playBoardNumbers:`);
+          // console.log(`-------------------------------`);
+          // display5x5matrix(player2cards);
+          // console.log(`-------------------------------`);
           const joinDuration = await Bingo.joinDuration();
           const turnDuration = await Bingo.turnDuration();
-          console.log(`wait for time pass join duration and draw duration`);
+          // console.log(`wait for time pass join duration and draw duration`);
           await network.provider.send("evm_increaseTime", [
             joinDuration.toNumber() + turnDuration.toNumber() + 1,
           ]);
-          console.log(`player draw results and claim winning.`);
+          // console.log(`player draw results and claim winning.`);
           await Bingo.connect(player1).drawWinnerOrClaimRewrads(gameRoundNow);
           await Bingo.connect(player2).drawWinnerOrClaimRewrads(gameRoundNow);
           const player1balance = await BingoToken.balanceOf(player1.address);
           const player2balance = await BingoToken.balanceOf(player2.address);
           const player3balance = await BingoToken.balanceOf(player3.address);
           const gameReuslt = await Bingo.getRoundBingoResult(gameRoundNow);
-          console.log(`Bingo result: ${gameReuslt[0]}`);
+          // console.log(`Bingo result: ${gameReuslt[0]}`);
           const player1win = await Bingo.checkWinner(
             gameRoundNow,
             player1.address
@@ -181,31 +180,31 @@ function display5x5matrix(e) {
             gameRoundNow,
             player3.address
           );
-          console.log(`player 1 win, Prize:${player1win.toString()}`);
-          console.log(`player 2 win, Prize:${player2win.toString()}`);
-          console.log(`player 3 win, Prize:${player3win.toString()}`);
-          console.log(`winning numbers result: ${gameReuslt[1].toString()}`);
-          console.log(`player 1 balance:${player1balance.toString()}`);
-          console.log(`player 2 balance:${player2balance.toString()}`);
-          console.log(`player 3 balance:${player3balance.toString()}`);
+          // console.log(`player 1 win, Prize:${player1win.toString()}`);
+          // console.log(`player 2 win, Prize:${player2win.toString()}`);
+          // console.log(`player 3 win, Prize:${player3win.toString()}`);
+          // console.log(`winning numbers result: ${gameReuslt[1].toString()}`);
+          // console.log(`player 1 balance:${player1balance.toString()}`);
+          // console.log(`player 2 balance:${player2balance.toString()}`);
+          // console.log(`player 3 balance:${player3balance.toString()}`);
         });
         it("three players join same game and check their awards for multiple times to check accurate gas cost", async () => {
           for (i = 0; i < 10; i++) {
-            console.log(`No.${i + 1} Game strating...`);
-            console.log(`player 1 joinning...`);
+            // console.log(`No.${i + 1} Game strating...`);
+            // console.log(`player 1 joinning...`);
             await BingoToken.connect(player1).mint();
             await BingoToken.connect(player1).approve(Bingo.address, fee);
             await Bingo.connect(player1).startNewGameWithBet();
             const result = await BingoToken.balanceOf(Bingo.address);
             assert.equal(result.toString(), 1 * 10 ** 18);
             const gameRoundNow = await Bingo.gameRoundNow();
-            console.log(`player 2 joinning...`);
+            // console.log(`player 2 joinning...`);
             await BingoToken.connect(player2).mint();
             await BingoToken.connect(player2).approve(Bingo.address, fee);
             await Bingo.connect(player2).joinCurrentGameWithBet(gameRoundNow);
             const result2 = await BingoToken.balanceOf(Bingo.address);
             assert.equal(result2.toString(), 2 * 10 ** 18);
-            console.log(`player 3  joinning...`);
+            // console.log(`player 3  joinning...`);
             await BingoToken.connect(player3).mint();
             await BingoToken.connect(player3).approve(Bingo.address, fee);
             await Bingo.connect(player3).joinCurrentGameWithBet(gameRoundNow);
@@ -216,35 +215,35 @@ function display5x5matrix(e) {
               player1.address,
               gameRoundNow
             );
-            console.log(`player 1 playBoardNumbers:`);
-            console.log(`-------------------------------`);
-            display5x5matrix(player1cards);
-            console.log(`-------------------------------`);
+            // console.log(`player 1 playBoardNumbers:`);
+            // console.log(`-------------------------------`);
+            // display5x5matrix(player1cards);
+            // console.log(`-------------------------------`);
             //   const array1 = JSON.parse(array.slice(0, 5));
             const player2cards = await Bingo.getPlayerGameBoard(
               player2.address,
               gameRoundNow
             );
-            console.log(`player 2 playBoardNumbers:`);
-            console.log(`-------------------------------`);
-            display5x5matrix(player2cards);
-            console.log(`-------------------------------`);
+            // console.log(`player 2 playBoardNumbers:`);
+            // console.log(`-------------------------------`);
+            // display5x5matrix(player2cards);
+            // console.log(`-------------------------------`);
 
             const player3cards = await Bingo.getPlayerGameBoard(
               player3.address,
               gameRoundNow
             );
-            console.log(`player 3 playBoardNumbers:`);
-            console.log(`-------------------------------`);
-            display5x5matrix(player3cards);
-            console.log(`-------------------------------`);
+            // console.log(`player 3 playBoardNumbers:`);
+            // console.log(`-------------------------------`);
+            // display5x5matrix(player3cards);
+            // console.log(`-------------------------------`);
             const joinDuration = await Bingo.joinDuration();
             const turnDuration = await Bingo.turnDuration();
-            console.log(`wait for time pass join duration and draw duration`);
+            // console.log(`wait for time pass join duration and draw duration`);
             await network.provider.send("evm_increaseTime", [
               joinDuration.toNumber() + turnDuration.toNumber() + 1,
             ]);
-            console.log(`player draw results and claim winning.`);
+            // console.log(`player draw results and claim winning.`);
             await Bingo.connect(player1).drawWinnerOrClaimRewrads(gameRoundNow);
             await Bingo.connect(player2).drawWinnerOrClaimRewrads(gameRoundNow);
             await Bingo.connect(player3).drawWinnerOrClaimRewrads(gameRoundNow);
@@ -252,7 +251,7 @@ function display5x5matrix(e) {
             const player2balance = await BingoToken.balanceOf(player2.address);
             const player3balance = await BingoToken.balanceOf(player3.address);
             const gameReuslt = await Bingo.getRoundBingoResult(gameRoundNow);
-            console.log(`Bingo result: ${gameReuslt[0]}`);
+            // console.log(`Bingo result: ${gameReuslt[0]}`);
             const player1win = await Bingo.checkWinner(
               gameRoundNow,
               player1.address
@@ -265,13 +264,13 @@ function display5x5matrix(e) {
               gameRoundNow,
               player3.address
             );
-            console.log(`player 1 win, Prize:${player1win.toString()}`);
-            console.log(`player 2 win, Prize:${player2win.toString()}`);
-            console.log(`player 3 win, Prize:${player3win.toString()}`);
-            console.log(`winning numbers result: ${gameReuslt[1].toString()}`);
-            console.log(`player 1 player1balance:${player1balance.toString()}`);
-            console.log(`player 2 player2balance:${player2balance.toString()}`);
-            console.log(`player 3 player2balance:${player3balance.toString()}`);
+            // console.log(`player 1 win, Prize:${player1win.toString()}`);
+            // console.log(`player 2 win, Prize:${player2win.toString()}`);
+            // console.log(`player 3 win, Prize:${player3win.toString()}`);
+            // console.log(`winning numbers result: ${gameReuslt[1].toString()}`);
+            // console.log(`player 1 player1balance:${player1balance.toString()}`);
+            // console.log(`player 2 player2balance:${player2balance.toString()}`);
+            // console.log(`player 3 player2balance:${player3balance.toString()}`);
           }
         });
       });
