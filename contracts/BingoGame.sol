@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.8;
 
-import "./SafeMath.sol";
+/// @title Bingo Game Smart Contract
+/// @author Ge
+/// @notice You can use this contract for playing bingo game
+
 import "./Interface/ICER20.sol";
-import "hardhat/console.sol";
 
 error erorr__entryFee();
 error error__inGameAlready();
@@ -11,14 +13,12 @@ error error__drawsNotStared();
 error error__winnerIsDarwing();
 error error__gameStarted();
 error error__notInGameOrClaimedRewards();
-error error__notOwner();
+error error__notAdmin();
 
 contract Bingo {
-    using SafeMath for uint256;
-
     enum gameStage {
         BETTING,
-        REVEALING,
+        DARWING,
         DARWED
     }
 
@@ -29,30 +29,56 @@ contract Bingo {
     }
 
     struct gameRound {
+        /// @notice When one person calls function `drawWinnerOrClaimRewrads`, it will draw the winner of this round
         bool drawing;
+        /// @notice If `winnerAnnounced` is true, other players don't have to draw instead of claiming their prize
         bool winnerAnnounced;
         uint256 startTime;
         bool bingo;
+        /// @notice Support multiple players in a game
+        /// @notice If two or more players have their first bingo in the same round, they will share the prize pool
         address[] winner;
         address[] playersArray;
         uint256[30] winningNumders;
         mapping(address => player) players;
     }
-    address public BingoToken;
-    address public owner;
+
     uint256 public gameRoundNow;
+    /// @notice Admin can update the entry fee, join duration, and turn duration
+    address public admin;
+    /// @notice Games have a minimum join duration before start
+    /// @notice `joinDuration` sets to 180 seconds as default to save gas
     uint256 public joinDuration = 180;
+    /// @notice Games have a minimum turn duration between draws
+    /// @notice `turnDuration` sets to 180 seconds as default to save gas
     uint256 public turnDuration = 180;
+    /// @notice Each player pays an ERC20 entry fee, transferred on join
+    address public BingoToken;
+    /// @notice `betAmountForBINGO` sets to 1 token as default to save gas
     uint256 public betAmountForBINGO = 1000000000000000000;
 
+    /// @notice Support multiple concurrent games
     mapping(uint256 => gameRound) gameRounds;
+
+    /// @notice Event emit when player create a new game
     event Created(
         address indexed creator,
         uint256 indexed roundCreated,
         uint256 indexed timeCreated
     );
+    /// @notice Event emit when player joins a existing game
     event Joined(address indexed player, uint256 indexed roundJoined);
-    event Reveal(address player, uint256[] numbers, uint256 result);
+    /// @notice Event emit when a game is drawed
+    event Drawed(
+        uint256 indexed gameRound,
+        uint256 indexed playersNum,
+        uint256[30] winningNumbers,
+        bool bingo
+    );
+    /// @notice Event emit when a player claimed
+    event Claimed(address indexed player, uint256 indexed Claimed);
+
+    /// @notice Only allowing one player to draw the winning numbers with time limit
     modifier drawingWinnerCheck(uint256 _gameRound) {
         if (
             block.timestamp <
@@ -66,7 +92,7 @@ contract Bingo {
 
     constructor(address _bingoTokenAddress) {
         BingoToken = _bingoTokenAddress;
-        owner = msg.sender;
+        admin = msg.sender;
     }
 
     function startNewGameWithBet() public {
@@ -86,6 +112,9 @@ contract Bingo {
         emit Created(msg.sender, gameRoundnow, block.timestamp);
     }
 
+    /// @notice Calculate tree age in years, rounded up, for live trees
+    /// @dev The Alexandr N. Tetearing algorithm could increase precision
+    /// @param _gameRoundToJoin The number of rings from dendrochronological sample
     function joinCurrentGameWithBet(uint256 _gameRoundToJoin) public {
         (
             gameStage stageOfPlayer,
@@ -110,19 +139,19 @@ contract Bingo {
     ) public drawingWinnerCheck(_gameRound) {
         if (
             gameRounds[_gameRound].players[msg.sender].stage !=
-            gameStage.REVEALING
+            gameStage.DARWING
         ) revert error__notInGameOrClaimedRewards();
         uint256 betAmount = betAmountForBINGO;
+        uint256 prizeToSend;
         if (gameRounds[_gameRound].winnerAnnounced == true) {
             if (gameRounds[_gameRound].bingo) {
-                uint256 prizeToSend = checkPrize(_gameRound, msg.sender);
+                prizeToSend = checkPrize(_gameRound, msg.sender);
                 if (prizeToSend > 0) {
                     IERC20(BingoToken).transfer(msg.sender, prizeToSend);
                 }
             } else {
                 IERC20(BingoToken).transfer(msg.sender, betAmount);
             }
-            gameRounds[_gameRound].players[msg.sender].stage = gameStage.DARWED;
         } else {
             address[] memory playersArrays = gameRounds[_gameRound]
                 .playersArray;
@@ -176,8 +205,6 @@ contract Bingo {
                                     );
                                 }
                                 gameRounds[_gameRound].bingo = true;
-                                console.log("winner found");
-                                console.log("Bingo Round", j);
                                 break;
                             }
                         }
@@ -192,23 +219,29 @@ contract Bingo {
             } while (i < playersArrays.length);
             gameRounds[_gameRound].winnerAnnounced = true;
             if (gameRounds[_gameRound].bingo) {
-                uint256 prizeToSend = checkPrize(_gameRound, msg.sender);
+                prizeToSend = checkPrize(_gameRound, msg.sender);
                 if (prizeToSend > 0) {
                     IERC20(BingoToken).transfer(msg.sender, prizeToSend);
                 }
             } else {
                 IERC20(BingoToken).transfer(msg.sender, betAmount);
             }
-
-            gameRounds[_gameRound].players[msg.sender].stage = gameStage.DARWED;
+            emit Drawed(
+                _gameRound,
+                playersArrays.length,
+                winningNumbers,
+                gameRounds[_gameRound].bingo
+            );
         }
+        gameRounds[_gameRound].players[msg.sender].stage = gameStage.DARWED;
+        emit Claimed(msg.sender, prizeToSend);
     }
 
     function playerGenerateGameBoard(
         address _player,
         uint256 _gameRound
     ) internal {
-        gameRounds[_gameRound].players[_player].stage = gameStage.REVEALING;
+        gameRounds[_gameRound].players[_player].stage = gameStage.DARWING;
         gameRounds[_gameRound].playersArray.push(_player);
         uint256 i;
         bytes32 blockHashPrevious = blockhash(block.number - 1);
@@ -305,15 +338,10 @@ contract Bingo {
                 ++i;
             }
         } while (i < winnners.length);
-        return (
-            n
-                .mul(
-                    betAmountForBINGO.mul(
-                        gameRounds[_gameRound].playersArray.length
-                    )
-                )
-                .div(winnners.length)
-        );
+        return ((n *
+            (betAmountForBINGO *
+                (gameRounds[_gameRound].playersArray.length))) /
+            (winnners.length));
     }
 
     function checkWinner(
@@ -423,7 +451,7 @@ contract Bingo {
         uint256 _turnDuration,
         uint256 _betAmountForBINGO
     ) public {
-        if (msg.sender != owner) revert error__notOwner();
+        if (msg.sender != admin) revert error__notAdmin();
         joinDuration = _joinDuration;
         turnDuration = _turnDuration;
         betAmountForBINGO = _betAmountForBINGO;

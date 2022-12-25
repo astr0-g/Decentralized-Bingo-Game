@@ -68,7 +68,7 @@ function display5x5matrix(e) {
               turnDuration,
               betAmountForBINGO
             )
-          ).to.be.revertedWith("error__notOwner");
+          ).to.be.revertedWith("error__notAdmin");
         });
         it("Test start new game with transfer BingoToken and player cannot join the same game.", async () => {
           await BingoToken.mint();
