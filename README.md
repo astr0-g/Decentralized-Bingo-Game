@@ -55,7 +55,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="## Test-Summary-and-Gas-Report">Test Summary and Gas Report</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -217,7 +217,7 @@ T
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Test Summary and Gas Report
+## Test-Summary-and-Gas-Report
 
 <p align="center" text="sm">test case 1: one player achieved the bingo in the earliest round and got their the pot of entry fee</p>
 <p align="center"><img alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
