@@ -269,7 +269,7 @@ astro - [@lil_astr_0](https://twitter.com/lil_astr_0) - wangge326@gmail.com
 
 Project Link: [github](https://github.com/Astr0-G/Decentralized-Bingo-Game)
 
-please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testnet Native Token to test Signet, I am happy to help!
+please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testnet Native Token to test Bingo Game, I am happy to help!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
