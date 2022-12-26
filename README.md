@@ -220,7 +220,7 @@ T
 ## Test Summary and Gas Report
 
 <p align="center" text="sm">test case 1: one player achieved the bingo in the earliest round and got their the pot of entry fee</p>
-<p align="center"><img height="200" alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
+<p align="center"><img alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
 
 <p align="center" text="sm">test case 2: two or more players achieved the bingo in the same earliest round and got split the pot of entry fee</p>
 <p align="center"><img height="200" alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
