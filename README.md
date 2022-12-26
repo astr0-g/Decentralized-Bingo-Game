@@ -29,8 +29,8 @@
     <br/><br />
     <br />
     dencentralized bingo game on Goerli Testnet Network <br/>
-    <a href="https://goerli.etherscan.io/address/0x1952A8046B1e549CC05E680283219e855CAf1d9b#code">Signet Controllor smart contract</a><br/>
-    <a href="https://goerli.etherscan.io/address/0x7c3FFEdd23710188be6e2eFdaC4a7d2fFA04523c#code">Signet FollowSys smart contract</a><br/>
+    <a href="https://goerli.etherscan.io/address/0xc26abaa046bed3ab51f0d50081a325032c266a90#code">Bingo game smart contract</a><br/>
+    <a href="https://goerli.etherscan.io/address/0x77262277047f38f647c5b7eed177767ed0777d83#code">Bingo Token smart contract</a><br/>
     <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet ProfileSys smart contract</a><br /><a href="https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetcontract/deployments/goerli"><strong>Explore the deployment data »</strong></a>
     <br />
     
@@ -76,39 +76,39 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 [BasicBingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BasicBingoGame.sol): this is the game version for test cases
 
-- Draw winners function and claim prize function are sticked together as "drawWinnerOrClaimPrize"(there is no need for automation keepers to involve for this contract)
+-   Draw winners function and claim prize function are sticked together as "drawWinnerOrClaimPrize"(there is no need for automation keepers to involve for this contract)
 
-- Support 4 players in a game as default(could change on your needs)
+-   Support 4 players in a game as default(could change on your needs)
 
-- Support unlimited multiple concurrent games
+-   Support unlimited multiple concurrent games
 
-- Each player pays an ERC20 entry fee, transferred on join
+-   Each player pays an ERC20 entry fee, transferred on join
 
-- Winner wins the pot of entry fees(player needs to claim their prize or bet by calling "drawWinnerOrClaimPrize" function)
+-   Winner wins the pot of entry fees(player needs to claim their prize or bet by calling "drawWinnerOrClaimPrize" function)
 
-- Games have a minimum join duration before start
+-   Games have a minimum join duration before start
 
-- Games have a minimum turn duration between draws
+-   Games have a minimum turn duration between draws
 
-- Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
+-   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
 
 [BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol): this is the game version for real world cases
 
-- Draw winners function "drawWinner" will be called by automation keeper
+-   Draw winners function "drawWinner" will be called by automation keeper
 
-- Support 4 players in a game as default(could change on your needs)
+-   Support 4 players in a game as default(could change on your needs)
 
-- Support unlimited multiple concurrent games
+-   Support unlimited multiple concurrent games
 
-- Each player pays an ERC20 entry fee, transferred on join
+-   Each player pays an ERC20 entry fee, transferred on join
 
-- Winner wins the pot of entry fees, transferred on win(player needs to claim their bet back by calling "claimPrize" function)
+-   Winner wins the pot of entry fees, transferred on win(player needs to claim their bet back by calling "claimPrize" function)
 
-- Games have a minimum join duration before start
+-   Games have a minimum join duration before start
 
-- Games have a minimum turn duration between draws
+-   Games have a minimum turn duration between draws
 
-- Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
+-   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
 
 [BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol)
 Normal ERC20 standard token

@@ -89,6 +89,10 @@ contract Bingo {
     /// @notice Event emit when a player claimed prize
     event Claimed(address indexed player, uint256 indexed Claimed);
 
+    modifier onlyAdmin() {
+        if (msg.sender != admin) revert error__notAdmin();
+        _;
+    }
     /// @notice Only allowing one player to draw the winning numbers with time limit
     modifier drawingWinnerCheck(uint256 _gameRound) {
         if (block.timestamp < gameRounds[_gameRound].startTime + joinDuration + turnDuration)
@@ -522,12 +526,22 @@ contract Bingo {
         uint256 _betAmountForBINGO,
         bool _returnBet,
         uint256 _maxPlayerNum
-    ) public {
-        if (msg.sender != admin) revert error__notAdmin();
+    ) public onlyAdmin {
         joinDuration = _joinDuration;
         turnDuration = _turnDuration;
         betAmountForBINGO = _betAmountForBINGO;
         returnBet = _returnBet;
         maxPlayerNum = _maxPlayerNum;
+    }
+
+    /// @dev this function helps people who accidentally transfer ERC20 token to our contract, and also withdraw Bingo Token as revenue
+    function withdrawToken(
+        address _erc20ContractAddress,
+        uint256 _amount,
+        address _to
+    ) external onlyAdmin {
+        IERC20(_erc20ContractAddress).approve(address(this), _amount);
+        bool callSuccess = IERC20(_erc20ContractAddress).transferFrom(address(this), _to, _amount);
+        require(callSuccess, "Transfer failed");
     }
 }
