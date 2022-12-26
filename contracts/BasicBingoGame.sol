@@ -7,6 +7,7 @@ pragma solidity 0.8.8;
 
 import "./Interface/ICER20.sol";
 import "hardhat/console.sol";
+
 error erorr__entryFee();
 error error__inGameAlready();
 error error__drawsNotStared();
@@ -15,10 +16,8 @@ error error__gameStarted();
 error error__notInGameOrClaimedRewards();
 error error__notAdmin();
 error error__exceedLimitPlayersInOneGame();
-error error__gameWinnerDrawed();
-error error__gameWinnerNotDrawed();
 
-contract Bingo {
+contract BingoBasic {
     /// @notice This is game stage for each player in each game round
     enum gameStage {
         BETTING,
@@ -62,8 +61,8 @@ contract Bingo {
     address public BingoToken;
     /// @notice `betAmountForBINGO` sets to 1 token as default to save gas
     uint256 public betAmountForBINGO = 1000000000000000000;
-    /// @notice returnBet sets the contract whether return player entry fee or not
-    bool public returnBet;
+    /// @notice returnBet sets the contract whether return player entry fee or not, default as `true` for basic bingo game
+    bool public returnBet = true;
     /// @notice maxPlayerNum sets the max player numbers in a game, default as 4 due to out of gas problem
     uint256 public maxPlayerNum = 4;
 
@@ -164,111 +163,7 @@ contract Bingo {
     /// @notice Players draw winner of this game round or claim prize
     /// @dev if one game is drawed, other players in this round
     /// @param _gameRound the round of game id that player joined
-    function drawWinner(
-        uint256 _gameRound
-    ) public drawingWinnerCheck(_gameRound) {
-        /// @notice Read bet amount to use for this function at beginning to save gas
-        /// @notice If winner is announced then distribute the prize to the caller
-        /// @dev This only be true when second time this function is called
-        if (gameRounds[_gameRound].winnerAnnounced == true)
-            revert error__gameWinnerDrawed();
-        /// @notice Draw winner or winners, if two players achieved bingo in the same round, they will split the prize poll
-        /// @dev Drawing winner spend unbelievable gas amount, using a automation keeper to call this function could wave gas for player in real cases
-        /// @notice Read players's addresses to use for this function at beginning of drawing process to save gas
-        address[] memory playersArrays = gameRounds[_gameRound].playersArray;
-        /// @notice Init winningNumbers array now for event params
-        uint256[24] memory winningNumbers;
-        /// @notice if there are more than one player in the game, then drawing start
-        if (playersArrays.length > 1) {
-            uint256 BingoIndex = 24;
-            /// @notice Call `gameGenerateNumber` to generate winning numbers
-            /// @dev Will generate 24 winning numbers for players for full experience of Bingo game
-            winningNumbers = gameGenerateNumber(_gameRound);
-            /// @notice i: i is representing players index in this game round, loop from first player to the last player
-            /// @notice j: j is representing players first bingo index in this game round
-            /// @dev j: if there is a first bingo in any players game board, we set j + 1 for the loop limit to save gas
-            /// @notice k: k is representing players game board number index, loop from 0 - 24
-            uint256 i;
-            uint256 j;
-            uint256 k;
-            do {
-                j = 0;
-                do {
-                    k = 0;
-                    uint256[25] memory playerGameBoard = getPlayerGameBoard(
-                        playersArrays[i],
-                        _gameRound
-                    );
-                    do {
-                        /// @notice If winning number and one of the player game board matches, set the players game board matches mapping to be 1
-                        if (winningNumbers[j] == playerGameBoard[k]) {
-                            gameRounds[_gameRound]
-                                .players[playersArrays[i]]
-                                .gameBoardMatchs[k] = 1;
-                        }
-                        /// @notice Skip center number
-                        if (k == 11) {
-                            unchecked {
-                                ++k;
-                            }
-                        }
-                        unchecked {
-                            ++k;
-                        }
-                        /// @notice When checking more than 5 numbers, check if this is a bingo or not
-                        if (k > 4) {
-                            /// @notice If bingo is true
-                            if (checkWinning(_gameRound, playersArrays[i])) {
-                                /// @notice set j to be bingo round + 1 to let other player check till this round to see if there are more than one winner in this game
-                                if (j == BingoIndex - 1) {
-                                    gameRounds[_gameRound].winner.push(
-                                        playersArrays[i]
-                                    );
-                                } else {
-                                    /// @notice If new bingo round is less than the first one, clean winner array and save this new winner
-                                    gameRounds[_gameRound]
-                                        .winner = new address[](0);
-                                    gameRounds[_gameRound].winner.push(
-                                        playersArrays[i]
-                                    );
-                                }
-                                unchecked {
-                                    BingoIndex = j + 1;
-                                }
-                                /// @notice Save bingo round number into contract
-                                gameRounds[_gameRound].bingo = j;
-                                console.log(
-                                    "First Bingo in round",
-                                    j,
-                                    "for player address",
-                                    playersArrays[i]
-                                );
-                                break;
-                            }
-                        }
-                    } while (k < 25);
-                    unchecked {
-                        ++j;
-                    }
-                } while (j < BingoIndex);
-                unchecked {
-                    ++i;
-                }
-            } while (i < playersArrays.length);
-        }
-        gameRounds[_gameRound].winnerAnnounced = true;
-        emit Drawed(
-            _gameRound,
-            playersArrays.length,
-            winningNumbers,
-            gameRounds[_gameRound].bingo
-        );
-    }
-
-    /// @notice Players draw winner of this game round or claim prize
-    /// @dev if one game is drawed, other players in this round
-    /// @param _gameRound the round of game id that player joined
-    function claimPrize(
+    function drawWinnerOrClaimPrize(
         uint256 _gameRound
     ) public drawingWinnerCheck(_gameRound) {
         /// @notice Cheak if stage of player in this is DRAWING to let them draw or claim
@@ -281,18 +176,125 @@ contract Bingo {
         uint256 prizeToSend;
         /// @notice If winner is announced then distribute the prize to the caller
         /// @dev This only be true when second time this function is called
-        if (gameRounds[_gameRound].winnerAnnounced == false)
-            revert error__gameWinnerNotDrawed();
-        /// @notice If there is one of more bingo achieved, check the prize and send to the winner
-        if (gameRounds[_gameRound].bingo > 0) {
-            prizeToSend = checkPrize(_gameRound, msg.sender);
-            if (prizeToSend > 0) {
-                IERC20(BingoToken).transfer(msg.sender, prizeToSend);
+        if (gameRounds[_gameRound].winnerAnnounced == true) {
+            /// @notice If there is one of more bingo achieved, check the prize and send to the winner
+            if (gameRounds[_gameRound].bingo > 0) {
+                prizeToSend = checkPrize(_gameRound, msg.sender);
+                if (prizeToSend > 0) {
+                    IERC20(BingoToken).transfer(msg.sender, prizeToSend);
+                }
+            } else {
+                /// @notice If there no bingo achieved, refund Bingo Token player bet
+                IERC20(BingoToken).transfer(msg.sender, betAmount);
             }
         } else {
-            /// @notice If there one player in a game refund Bingo Token player bet
-            /// @dev Choosing by admin about sending back players bet fees, becuase house needs token as funds to balance out automation keepers gas spend, I chose not to send back token as house revenue
-            if (gameRounds[_gameRound].playersArray.length <= 1 || returnBet) {
+            /// @notice Draw winner or winners, if two players achieved bingo in the same round, they will split the prize poll
+            /// @dev Drawing winner spend unbelievable gas amount, using a automation keeper to call this function could wave gas for player in real cases
+            /// @notice Read players's addresses to use for this function at beginning of drawing process to save gas
+            address[] memory playersArrays = gameRounds[_gameRound]
+                .playersArray;
+            /// @notice if there are more than one player in the game, then drawing start
+            if (playersArrays.length > 1) {
+                /// @notice Call `gameGenerateNumber` to generate winning numbers
+                /// @dev Will generate 24 winning numbers for players for full experience of Bingo game
+                uint256[24] memory winningNumbers = gameGenerateNumber(
+                    _gameRound
+                );
+                uint256 BingoIndex = 24;
+                /// @notice i: i is representing players index in this game round, loop from first player to the last player
+                /// @notice j: j is representing players first bingo index in this game round
+                /// @dev j: if there is a first bingo in any players game board, we set j + 1 for the loop limit to save gas
+                /// @notice k: k is representing players game board number index, loop from 0 - 24
+                uint256 i;
+                uint256 j;
+                uint256 k;
+                do {
+                    j = 0;
+                    do {
+                        k = 0;
+                        uint256[25] memory playerGameBoard = getPlayerGameBoard(
+                            playersArrays[i],
+                            _gameRound
+                        );
+                        do {
+                            /// @notice If winning number and one of the player game board matches, set the players game board matches mapping to be 1
+                            if (winningNumbers[j] == playerGameBoard[k]) {
+                                gameRounds[_gameRound]
+                                    .players[playersArrays[i]]
+                                    .gameBoardMatchs[k] = 1;
+                            }
+                            /// @notice Skip center number
+                            if (k == 11) {
+                                unchecked {
+                                    ++k;
+                                }
+                            }
+                            unchecked {
+                                ++k;
+                            }
+                            /// @notice When checking more than 5 numbers, check if this is a bingo or not
+                            if (k > 4) {
+                                /// @notice If bingo is true
+                                if (
+                                    checkWinning(_gameRound, playersArrays[i])
+                                ) {
+                                    /// @notice set j to be bingo round + 1 to let other player check till this round to see if there are more than one winner in this game
+                                    if (j == BingoIndex - 1) {
+                                        gameRounds[_gameRound].winner.push(
+                                            playersArrays[i]
+                                        );
+                                    } else {
+                                        /// @notice If new bingo round is less than the first one, clean winner array and save this new winner
+                                        gameRounds[_gameRound]
+                                            .winner = new address[](0);
+                                        gameRounds[_gameRound].winner.push(
+                                            playersArrays[i]
+                                        );
+                                    }
+                                    unchecked {
+                                        BingoIndex = j + 1;
+                                    }
+                                    /// @notice Save bingo round number into contract
+                                    gameRounds[_gameRound].bingo = j;
+                                    console.log(
+                                        "First Bingo in round",
+                                        j,
+                                        "for player address",
+                                        playersArrays[i]
+                                    );
+                                    break;
+                                }
+                            }
+                        } while (k < 25);
+                        unchecked {
+                            ++j;
+                        }
+                    } while (j < BingoIndex);
+                    unchecked {
+                        ++i;
+                    }
+                } while (i < playersArrays.length);
+                gameRounds[_gameRound].winnerAnnounced = true;
+                if (gameRounds[_gameRound].bingo > 0) {
+                    prizeToSend = checkPrize(_gameRound, msg.sender);
+                    if (prizeToSend > 0) {
+                        IERC20(BingoToken).transfer(msg.sender, prizeToSend);
+                    }
+                } else if (
+                    gameRounds[_gameRound].playersArray.length <= 1 || returnBet
+                ) {
+                    /// @notice If there no bingo achieved, refund Bingo Token player bet
+                    IERC20(BingoToken).transfer(msg.sender, betAmount);
+                }
+                emit Drawed(
+                    _gameRound,
+                    playersArrays.length,
+                    winningNumbers,
+                    gameRounds[_gameRound].bingo
+                );
+            } else if (
+                gameRounds[_gameRound].playersArray.length <= 1 || returnBet
+            ) {
                 /// @notice If there no bingo achieved, refund Bingo Token player bet
                 IERC20(BingoToken).transfer(msg.sender, betAmount);
             }
