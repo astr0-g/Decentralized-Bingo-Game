@@ -112,12 +112,13 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 Normal ERC20 standard token
 
 more infos:
-ReturnBet sets to true as default means returns bet token amount when there is no winner for a game
-Random numbers is generated with blockhash(block.number - 1)
-Duplicate numbers may be drawn, but have no effect on the game
-Boards may have duplicate numbers that can be marked by one drawn number
-Each game number may be between 0 and 64
-Players are online to claim a game board and prize with transaction sent
+
+-   ReturnBet sets to true as default means returns bet token amount when there is no winner for a game
+-   Random numbers is generated with blockhash(block.number - 1)
+-   Duplicate numbers may be drawn, but have no effect on the game
+-   Boards may have duplicate numbers that can be marked by one drawn number
+-   Each game number may be between 0 and 64
+-   Players are online to claim a game board and prize with transaction
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
