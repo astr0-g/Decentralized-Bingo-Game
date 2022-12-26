@@ -34,10 +34,7 @@
     
   </p>
 </div>
-<p align="center"> 
-  Visitor count<br>
-  <img src="https://profile-counter.glitch.me/Astr0-G/count.svg" />
-</p>
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
