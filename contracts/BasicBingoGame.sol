@@ -90,10 +90,8 @@ contract BingoBasic {
 
     /// @notice Only allowing one player to draw the winning numbers with time limit
     modifier drawingWinnerCheck(uint256 _gameRound) {
-        if (
-            block.timestamp <
-            gameRounds[_gameRound].startTime + joinDuration + turnDuration
-        ) revert error__drawsNotStared();
+        if (block.timestamp < gameRounds[_gameRound].startTime + joinDuration + turnDuration)
+            revert error__drawsNotStared();
         if (gameRounds[_gameRound].drawing) revert error__winnerIsDRAWING();
 
         /// @notice Start drawing
@@ -112,13 +110,8 @@ contract BingoBasic {
     /// @notice player start a new with game board generated
     function startNewGameWithBet() public {
         /// @notice Send Bingo Token to this contract, and check transaction success
-        if (
-            IERC20(BingoToken).transferFrom(
-                msg.sender,
-                address(this),
-                betAmountForBINGO
-            ) != true
-        ) revert erorr__entryFee();
+        if (IERC20(BingoToken).transferFrom(msg.sender, address(this), betAmountForBINGO) != true)
+            revert erorr__entryFee();
         /// @notice Make a new game round
         unchecked {
             ++gameRoundNow;
@@ -134,28 +127,22 @@ contract BingoBasic {
 
     /// @notice Players join current game and generate their game board
     /// @param _gameRoundToJoin the round of game id
-    /// @dev Worst case of nobody has a bingo for 4 players are about 28000000 gas within 0 - 64 as numbers that this contract generated for bingo game with 24 winning numbers generated
+    /// @dev Worst case of nobody has a bingo for 4 players are about 24356551 gas within 0 - 64 as numbers that this contract generated for bingo game with 24 winning numbers generated
     function joinCurrentGameWithBet(uint256 _gameRoundToJoin) public {
         /// @notice With 2 lines above being said, limit no more than 4 players in a game to limit out of gas problem
         if (gameRounds[_gameRoundToJoin].playersArray.length + 1 > maxPlayerNum)
             revert error__exceedLimitPlayersInOneGame();
-        (
-            gameStage stageOfPlayer,
-            uint256 roundStartedTimeWithDuration
-        ) = getRoundDetails(_gameRoundToJoin, msg.sender);
+        (gameStage stageOfPlayer, uint256 roundStartedTimeWithDuration) = getRoundDetails(
+            _gameRoundToJoin,
+            msg.sender
+        );
         /// @notice Player can join multiple game at the same time, but not in the same round
         if (stageOfPlayer != gameStage.BETTING) revert error__inGameAlready();
         /// @notice Players can not join the game after join duration
-        if (block.timestamp > roundStartedTimeWithDuration)
-            revert error__gameStarted();
+        if (block.timestamp > roundStartedTimeWithDuration) revert error__gameStarted();
         /// @notice Send Bingo Token to this contract, and check transaction success
-        if (
-            IERC20(BingoToken).transferFrom(
-                msg.sender,
-                address(this),
-                betAmountForBINGO
-            ) != true
-        ) revert erorr__entryFee();
+        if (IERC20(BingoToken).transferFrom(msg.sender, address(this), betAmountForBINGO) != true)
+            revert erorr__entryFee();
         /// @notice Generating player game board for this game round
         playerGenerateGameBoard(msg.sender, _gameRoundToJoin);
     }
@@ -163,14 +150,10 @@ contract BingoBasic {
     /// @notice Players draw winner of this game round or claim prize
     /// @dev if one game is drawed, other players in this round
     /// @param _gameRound the round of game id that player joined
-    function drawWinnerOrClaimPrize(
-        uint256 _gameRound
-    ) public drawingWinnerCheck(_gameRound) {
+    function drawWinnerOrClaimPrize(uint256 _gameRound) public drawingWinnerCheck(_gameRound) {
         /// @notice Cheak if stage of player in this is DRAWING to let them draw or claim
-        if (
-            gameRounds[_gameRound].players[msg.sender].stage !=
-            gameStage.DRAWING
-        ) revert error__notInGameOrClaimedRewards();
+        if (gameRounds[_gameRound].players[msg.sender].stage != gameStage.DRAWING)
+            revert error__notInGameOrClaimedRewards();
         /// @notice Read bet amount to use for this function at beginning to save gas
         uint256 betAmount = betAmountForBINGO;
         uint256 prizeToSend;
@@ -191,15 +174,12 @@ contract BingoBasic {
             /// @notice Draw winner or winners, if two players achieved bingo in the same round, they will split the prize poll
             /// @dev Drawing winner spend unbelievable gas amount, using a automation keeper to call this function could wave gas for player in real cases
             /// @notice Read players's addresses to use for this function at beginning of drawing process to save gas
-            address[] memory playersArrays = gameRounds[_gameRound]
-                .playersArray;
+            address[] memory playersArrays = gameRounds[_gameRound].playersArray;
             /// @notice if there are more than one player in the game, then drawing start
             if (playersArrays.length > 1) {
                 /// @notice Call `gameGenerateNumber` to generate winning numbers
                 /// @dev Will generate 24 winning numbers for players for full experience of Bingo game
-                uint256[24] memory winningNumbers = gameGenerateNumber(
-                    _gameRound
-                );
+                uint256[24] memory winningNumbers = gameGenerateNumber(_gameRound);
                 uint256 BingoIndex = 24;
                 /// @notice i: i is representing players index in this game round, loop from first player to the last player
                 /// @notice j: j is representing players first bingo index in this game round
@@ -219,9 +199,9 @@ contract BingoBasic {
                         do {
                             /// @notice If winning number and one of the player game board matches, set the players game board matches mapping to be 1
                             if (winningNumbers[j] == playerGameBoard[k]) {
-                                gameRounds[_gameRound]
-                                    .players[playersArrays[i]]
-                                    .gameBoardMatchs[k] = 1;
+                                gameRounds[_gameRound].players[playersArrays[i]].gameBoardMatchs[
+                                        k
+                                    ] = 1;
                             }
                             /// @notice Skip center number
                             if (k == 11) {
@@ -235,21 +215,14 @@ contract BingoBasic {
                             /// @notice When checking more than 5 numbers, check if this is a bingo or not
                             if (k > 4) {
                                 /// @notice If bingo is true
-                                if (
-                                    checkWinning(_gameRound, playersArrays[i])
-                                ) {
+                                if (checkWinning(_gameRound, playersArrays[i])) {
                                     /// @notice set j to be bingo round + 1 to let other player check till this round to see if there are more than one winner in this game
                                     if (j == BingoIndex - 1) {
-                                        gameRounds[_gameRound].winner.push(
-                                            playersArrays[i]
-                                        );
+                                        gameRounds[_gameRound].winner.push(playersArrays[i]);
                                     } else {
                                         /// @notice If new bingo round is less than the first one, clean winner array and save this new winner
-                                        gameRounds[_gameRound]
-                                            .winner = new address[](0);
-                                        gameRounds[_gameRound].winner.push(
-                                            playersArrays[i]
-                                        );
+                                        gameRounds[_gameRound].winner = new address[](0);
+                                        gameRounds[_gameRound].winner.push(playersArrays[i]);
                                     }
                                     unchecked {
                                         BingoIndex = j + 1;
@@ -280,9 +253,7 @@ contract BingoBasic {
                     if (prizeToSend > 0) {
                         IERC20(BingoToken).transfer(msg.sender, prizeToSend);
                     }
-                } else if (
-                    gameRounds[_gameRound].playersArray.length <= 1 || returnBet
-                ) {
+                } else if (gameRounds[_gameRound].playersArray.length <= 1 || returnBet) {
                     /// @notice If there no bingo achieved, refund Bingo Token player bet
                     IERC20(BingoToken).transfer(msg.sender, betAmount);
                 }
@@ -292,9 +263,7 @@ contract BingoBasic {
                     winningNumbers,
                     gameRounds[_gameRound].bingo
                 );
-            } else if (
-                gameRounds[_gameRound].playersArray.length <= 1 || returnBet
-            ) {
+            } else if (gameRounds[_gameRound].playersArray.length <= 1 || returnBet) {
                 /// @notice If there no bingo achieved, refund Bingo Token player bet
                 IERC20(BingoToken).transfer(msg.sender, betAmount);
             }
@@ -307,10 +276,7 @@ contract BingoBasic {
     /// @dev `joinCurrentGameWithBet` & `startNewGameWithBet` will call this internal function
     /// @param _player player's address
     /// @param _gameRound the round of game id
-    function playerGenerateGameBoard(
-        address _player,
-        uint256 _gameRound
-    ) internal {
+    function playerGenerateGameBoard(address _player, uint256 _gameRound) internal {
         /// @notice Change player's stage of this game round to DRAWING
         gameRounds[_gameRound].players[_player].stage = gameStage.DRAWING;
         /// @notice Save player's address to game round player array
@@ -322,9 +288,7 @@ contract BingoBasic {
         /// @dev Generate random number, but could be replaced by on-chain services provider, such as Chainlink
         bytes32 blockHashPrevious = blockhash(block.number - 1);
         uint256 seed = uint256(blockHashPrevious);
-        uint256 randomNumber = uint256(
-            keccak256(abi.encodePacked(seed, msg.sender))
-        );
+        uint256 randomNumber = uint256(keccak256(abi.encodePacked(seed, msg.sender)));
         /// @dev Use do while and unchecked{} to save gas.
         do {
             /// @notice Check if the random number bigger than 64
@@ -332,8 +296,7 @@ contract BingoBasic {
             /// @dev We could definetly choose 256 if we insist
             randomNumber = (randomNumber >> 6 > 0)
                 ? (randomNumber >> 6) % 64
-                : (uint256(keccak256(abi.encodePacked(seed, msg.sender, i)))) %
-                    64;
+                : (uint256(keccak256(abi.encodePacked(seed, msg.sender, i)))) % 64;
             /// @notice Save random number into memory array
             array[i] = randomNumber;
             /// @notice No need to save the center game borad number
@@ -356,9 +319,7 @@ contract BingoBasic {
     /// @notice Game generating winning number of this game round
     /// @dev `drawWinnerOrClaimPrize` will call this internal function
     /// @param _gameRound the round of game id
-    function gameGenerateNumber(
-        uint256 _gameRound
-    ) internal returns (uint256[24] memory) {
+    function gameGenerateNumber(uint256 _gameRound) internal returns (uint256[24] memory) {
         /// @notice Make a memory array for generating game board numbers in this function
         /// @dev Saving more gas compares to directly save numbers into contract each time
         /// @dev Choose 24 winning numbers between 0 - 63 is enough for a bingo to be true, and it is also be able to make player gameboard match all bingos
@@ -369,9 +330,7 @@ contract BingoBasic {
         /// @dev Generate random number, but could be replaced by on-chain services provider, such as Chainlink
         bytes32 blockHashPrevious = blockhash(block.number - 1);
         uint256 seed = uint256(blockHashPrevious);
-        uint256 randomNumber = uint256(
-            keccak256(abi.encodePacked(seed, msg.sender))
-        );
+        uint256 randomNumber = uint256(keccak256(abi.encodePacked(seed, msg.sender)));
         /// @dev Use do while and unchecked{} to save gas.
         do {
             /// @notice Check if the random number bigger than 64
@@ -379,8 +338,7 @@ contract BingoBasic {
             /// @dev We could definetly choose 256 if we insist
             randomNumber = (randomNumber >> 6 > 0)
                 ? (randomNumber >> 6) % 64
-                : (uint256(keccak256(abi.encodePacked(seed, msg.sender, i)))) %
-                    64;
+                : (uint256(keccak256(abi.encodePacked(seed, msg.sender, i)))) % 64;
             /// @notice Save random number into memory array
             array[i] = randomNumber;
             unchecked {
@@ -392,6 +350,10 @@ contract BingoBasic {
         return (array);
     }
 
+    /// @notice get player stage of this round and timestamp right after join duration ends
+    /// @dev `joinCurrentGameWithBet` will call this internal function
+    /// @param _gameRound the round of game id
+    /// @param _player player address of this round of game
     function getRoundDetails(
         uint256 _gameRound,
         address _player
@@ -402,15 +364,17 @@ contract BingoBasic {
         );
     }
 
+    /// @notice Get the Bingo result of this round of game and winning numbers
+    /// @param _gameRound the round of game id
     function getRoundBingoResult(
         uint256 _gameRound
     ) public view returns (bool, uint256[24] memory) {
-        return (
-            gameRounds[_gameRound].bingo > 0,
-            gameRounds[_gameRound].winningNumders
-        );
+        return (gameRounds[_gameRound].bingo > 0, gameRounds[_gameRound].winningNumders);
     }
 
+    /// @notice Get player game board numbers in a uint256 array
+    /// @param _gameRound the round of game id
+    /// @param _player player address of this round of game
     function getPlayerGameBoard(
         address _player,
         uint256 _gameRound
@@ -418,6 +382,10 @@ contract BingoBasic {
         return (gameRounds[_gameRound].players[_player].gameBoard);
     }
 
+    /// @notice Check prize for the player of this game round
+    /// @dev `drawWinnerOrClaimPrize` and `checkWinner` will call this internal function
+    /// @param _gameRound the round of game id
+    /// @param _player player address of this round of game
     function checkPrize(
         uint256 _gameRound,
         address _player
@@ -428,23 +396,22 @@ contract BingoBasic {
         do {
             if (winnners[i] == _player) {
                 unchecked {
-                    n++;
+                    ++n;
                 }
             }
             unchecked {
                 ++i;
             }
         } while (i < winnners.length);
-        return ((n *
-            (betAmountForBINGO *
-                (gameRounds[_gameRound].playersArray.length))) /
+        /// @notice If there is more than one winnier, n will be equal to 1 and times betAmountForBINGO times numbers of players divided by winners number
+        return ((n * (betAmountForBINGO * (gameRounds[_gameRound].playersArray.length))) /
             (winnners.length));
     }
 
-    function checkWinner(
-        uint256 _gameRound,
-        address _player
-    ) public view returns (bool, uint256) {
+    /// @notice Check if player is the the winner of this game round, and returns bool with winning prize to claim
+    /// @param _gameRound the round of game id
+    /// @param _player player address of this round of game
+    function checkWinner(uint256 _gameRound, address _player) public view returns (bool, uint256) {
         address[] memory winnners = gameRounds[_gameRound].winner;
         uint256 i;
         if (winnners.length > 0) {
@@ -463,70 +430,23 @@ contract BingoBasic {
         }
     }
 
-    function checkWinning(
-        uint256 _gameRound,
-        address _player
-    ) internal view returns (bool) {
+    /// @notice Check if player game board matches and retrun bool
+    /// @dev `drawWinnerOrClaimPrize` will call this internal function
+    /// @param _gameRound the round of game id
+    /// @param _player player address of this round of game
+    function checkWinning(uint256 _gameRound, address _player) internal view returns (bool) {
         uint256 i;
-        do {
-            if (
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    i * 5 + 0
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    i * 5 + 1
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    i * 5 + 2
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    i * 5 + 3
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    i * 5 + 4
-                ] ==
-                1
-            ) {
-                return (true);
-            } else if (
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    0 + i
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    5 + i
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    10 + i
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    15 + i
-                ] ==
-                1 &&
-                gameRounds[_gameRound].players[_player].gameBoardMatchs[
-                    20 + i
-                ] ==
-                1
-            ) {
-                return (true);
-            }
-            unchecked {
-                ++i;
-            }
-        } while (i < 5);
-
         if (
             gameRounds[_gameRound].players[_player].gameBoardMatchs[0] == 1 &&
             gameRounds[_gameRound].players[_player].gameBoardMatchs[6] == 1 &&
             gameRounds[_gameRound].players[_player].gameBoardMatchs[18] == 1 &&
             gameRounds[_gameRound].players[_player].gameBoardMatchs[24] == 1
         ) {
+            /// @notice BINGO in [1,0,0,0,0]
+            /// @notice          [0,1,0,0,0]
+            /// @notice          [0,0,1,0,0]
+            /// @notice          [0,0,0,1,0]
+            /// @notice          [0,0,0,0,1]
             return (true);
         }
 
@@ -536,11 +456,51 @@ contract BingoBasic {
             gameRounds[_gameRound].players[_player].gameBoardMatchs[16] == 1 &&
             gameRounds[_gameRound].players[_player].gameBoardMatchs[20] == 1
         ) {
+            /// @notice BINGO in [0,0,0,0,1]
+            /// @notice          [0,0,0,1,0]
+            /// @notice          [0,0,1,0,0]
+            /// @notice          [0,1,0,0,0]
+            /// @notice          [1,0,0,0,0]
             return (true);
         }
+        do {
+            if (
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[i * 5 + 0] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[i * 5 + 1] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[i * 5 + 2] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[i * 5 + 3] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[i * 5 + 4] == 1
+            ) {
+                /// @notice BINGO in [1,1,1,1,1] ↓
+                /// @notice          [0,0,0,0,0] ↓
+                /// @notice          [0,0,0,0,0] ↓
+                /// @notice          [0,0,0,0,0] ↓
+                /// @notice          [0,0,0,0,0] ↓
+                return (true);
+            } else if (
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[0 + i] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[5 + i] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[10 + i] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[15 + i] == 1 &&
+                gameRounds[_gameRound].players[_player].gameBoardMatchs[20 + i] == 1
+            ) {
+                /// @notice           → → → → →
+                /// @notice BINGO in [1,0,0,0,0]
+                /// @notice          [1,0,0,0,0]
+                /// @notice          [1,0,0,0,0]
+                /// @notice          [1,0,0,0,0]
+                /// @notice          [1,0,0,0,0]
+                return (true);
+            }
+            unchecked {
+                ++i;
+            }
+        } while (i < 5);
+
         return (false);
     }
 
+    /// @notice set config for the game, such as join durations, turn durations, bet amount for bingo game, returnBet boolean for if game returns no-winner game, max player numbers in one game
     function setConfig(
         uint256 _joinDuration,
         uint256 _turnDuration,
