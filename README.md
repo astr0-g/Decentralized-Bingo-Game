@@ -23,7 +23,7 @@
     <a href="https://github.com/Astr0-G/Decentralized-Bingo-Game"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
+    <a href="https://github.com/Astr0-G/Decentralized-Bingo-Game/issues">Report Bug</a>
     <br/><br />
     <br />
     dencentralized bingo game on Goerli Testnet Network <br/>
@@ -182,7 +182,7 @@ T
         ARB_RPC_URL=https://arbitrum-mainnet.infura.io/v3/12345
         ```
 
-    but be sure to change the contract address of the [json](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetfrontend/constants/abi.json) files in the signetfrontend constants
+    but be sure to change the contract address of the [json](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/signetfrontend/constants/abi.json) files in the signetfrontend constants
 
 4.  cd into signetmonitor
     create a .env file and put
@@ -206,7 +206,7 @@ T
 
         please have your own database access ready
         (localhost or remote)
-        and change the [setting](https://github.com/Astr0-G/Signet-Social-Media/blob/main/signetapi/learning/settings.py) regarding database access
+        and change the [setting](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/signetapi/learning/settings.py) regarding database access
 
         ```sh
         python manage.py runserver
@@ -257,7 +257,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/Astr0-G/Signet-Social-Media/blob/main/LICENSE.txt) for more information.
+Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/LICENSE.txt) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -279,15 +279,15 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
-[contributors-url]: https://github.com/Astr0-G/Signet-Social-Media/graphs/contributors
+[contributors-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
-[forks-url]: https://github.com/Astr0-G/Signet-Social-Media/network/members
+[forks-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/network/members
 [stars-shield]: https://img.shields.io/github/stars/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
-[stars-url]: https://github.com/Astr0-G/Signet-Social-Media/stargazers
+[stars-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
-[issues-url]: https://github.com/Astr0-G/Signet-Social-Media/issues
+[issues-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/Astr0-G/Signet-Social-Media/blob/main/LICENSE.txt
+[license-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: https://cdn.discordapp.com/attachments/960590776570626098/1042591497813504040/logo2.png
