@@ -65,12 +65,6 @@ const networkConfig = {
 }
 
 const developmentChains = ["hardhat", "localhost"]
-const DECIMALS = 8
-const INITIAL_ANSWER = 20000000000
-const frontEndContractsFile =
-    "C:/Users/Administrator/Desktop/NFT MARKET/nft-marketplace-frontend-thegraph/contants/contractAddresses.json"
-const frontEndAbiFile =
-    "C:/Users/Administrator/Desktop/NFT MARKET/nft-marketplace-frontend-thegraph/contants/abi.json"
 module.exports = {
     networkConfig,
     developmentChains,
