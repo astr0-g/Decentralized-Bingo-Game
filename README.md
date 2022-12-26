@@ -278,13 +278,13 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Astr0-G/Decentralized-Bingo-Game.svg?style=for-the-badge
 [contributors-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/Astr0-G/Decentralized-Bingo-Game.svg?style=for-the-badge
 [forks-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/network/members
-[stars-shield]: https://img.shields.io/github/stars/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/Astr0-G/Decentralized-Bingo-Game.svg?style=for-the-badge
 [stars-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Astr0-G/Signet-Social-Media.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/Astr0-G/Decentralized-Bingo-Game.svg?style=for-the-badge
 [issues-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/LICENSE.txt
