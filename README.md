@@ -124,7 +124,7 @@ more infos:
 
 ### Built With
 
-This section contains frameworks/libraries used to bootstrap Signet, it includes the smart contract and api.
+This section contains frameworks/libraries used to bootstrap Bingo Game, it includes the smart contract and api.
 
 [![hardhat][hardhat]][hardhat-url]  
  [![django][django]][django-url]
