@@ -23,15 +23,13 @@
     <a href="https://github.com/Astr0-G/Decentralized-Bingo-Game"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://www.signet.ink">View Demo</a>
-    ·
     <a href="https://github.com/Astr0-G/Signet-Social-Media/issues">Report Bug</a>
     <br/><br />
     <br />
     dencentralized bingo game on Goerli Testnet Network <br/>
     <a href="https://goerli.etherscan.io/address/0xc26abaa046bed3ab51f0d50081a325032c266a90#code">Bingo game smart contract</a><br/>
     <a href="https://goerli.etherscan.io/address/0x77262277047f38f647c5b7eed177767ed0777d83#code">Bingo Token smart contract</a><br/>
-    <a href="https://goerli.etherscan.io/address/0xf53B6145246810ee99E5A75E720550A0f38c0E00#code">Signet ProfileSys smart contract</a><br /><a href="https://github.com/Astr0-G/Signet-Social-Media/tree/main/signetcontract/deployments/goerli"><strong>Explore the deployment data »</strong></a>
+    <a href="https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/deployments/goerli"><strong>Explore the deployment data »</strong></a>
     <br />
     
   </p>
