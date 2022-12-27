@@ -277,27 +277,32 @@ NodeJs scripts:
 
 <!-- Interface -->
 
-## public API
+## Public-API
 
-api are constructed based on Django, [check the files](https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/public-api)
+API are constructed based on Django, [check the files here](https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/public-api).
 
 API endpoint:
 
 [test get bingo game details](https://www.decentralizedbingogame.live/api/getbingobasicdetails/)  
 `https://www.decentralizedbingogame.live/api/getbingobasicdetails/`
+   
 
 [test get player game board](https://www.decentralizedbingogame.live/api/getplayergameboard/0x51580828DF98f7d9Bb09a0410795183fe6183E14/1/)
 `https://www.decentralizedbingogame.live/api/getplayergameboard/<playeraddress>/<gameround>/`
+   
 
 [test get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/2/)  
 `https://www.decentralizedbingogame.live/api/getplayer/<gameround>/`
+   
 
 [test get round bingo result and winning numbers from game round](https://www.decentralizedbingogame.live/api/getroundbingoresult/2/)  
 `https://www.decentralizedbingogame.live/api/getroundbingoresult/<gameround>/`
+   
 
 [check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/2/)  
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
-
+   
+   
 [get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)  
 `https://www.decentralizedbingogame.live/api/get10rounddetils/`   
 \*For get all round details, will soon make it to 10 rounds of data showing, because there is no database Django using right now, will need to set up database later on to save data into bingo game database everytime when emit an event which is also for best performance for frontend.
