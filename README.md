@@ -85,7 +85,7 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Games have a minimum turn duration between draws
 
--   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
+-   Admin can update the entry fee, join duration, turn duration, whether return bet and max plyer in one game
 
 [BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol): this is the game version for real world cases, which is the one deployed on Goerli testnet.
 
@@ -103,7 +103,7 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Games have a minimum turn duration between draws
 
--   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
+-   Admin can update the entry fee, join duration, turn duration, whether return bet and max plyer in one game
 
 [BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol):
 Normal ERC20 standard token
@@ -342,7 +342,6 @@ API endpoint:
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
 
 [get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)   
-
 `https://www.decentralizedbingogame.live/api/get10rounddetils/`
 \*For get all round details, will soon make it to 10 rounds of data showing, because there is no database Django using right now, will need to set up database later on to save data into bingo game database everytime when emit an event which is also for best performance for frontend.
 
