@@ -216,13 +216,14 @@ T
 ## Test-Summary-and-Gas-Report
 
 ### Test Summary
+
 <p align="center" text="sm">test case 1</p>
 <p align="center" text="sm">one player achieved the bingo in the earliest round and got their the pot of entry fee</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
 
 <p align="center" text="sm">test case 2</p>
 <p align="center" text="sm">two or more players achieved the bingo in the same earliest round and split the pot of entry fee</p>
-<p align="center" text="sm">changed generated number rango from 64 to 10 just for this test</p>
+<p align="center" text="sm">changed generated number rangn from 64 to 10 just for this test</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057129480436588554/case2.png"></p><br/>
 
 <p align="center" text="sm">test case 3</p>
@@ -243,7 +244,11 @@ T
 <p align="center" text="sm">other than not calling it</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
 
+<p align="center" text="sm">Call interface test</p>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057138073458188379/callinterfacetest.png"></p><br/>
+
 ### Gas-Report
+
 <p align="center" text="sm">test summary</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
 
