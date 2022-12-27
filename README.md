@@ -133,10 +133,7 @@ This section contains frameworks/libraries used to bootstrap Bingo Game, it incl
 
 ## Getting Started
 
-Clone the repo
-`sh
-    git clone https://github.com/Astr0-G/Decentralized-Bingo-Game.git
-    `
+There are four parts of the files: [smart contract files](https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/contracts),[nodeJs Interface files](https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/scripts/interface),[Nodejs monitor files](https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/scripts/monitor),[Django REST API files](https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/public-api).
 
 ### Prerequisites
 
@@ -154,7 +151,10 @@ Clone the repo
 
 ###### you can skip 3-5 if you are only testing frontend
 
-1.
+1.  Clone the repo
+    ```sh
+    git clone https://github.com/Astr0-G/Decentralized-Bingo-Game.git
+    ```
 2.  Install node_modules
 
     ```sh
@@ -182,35 +182,67 @@ Clone the repo
         MUMBAI_RPC_URL=https://polygon-mumbai.infura.io/v3/12345
         ARB_RPC_URL=https://arbitrum-mainnet.infura.io/v3/12345
         rpc=''
-        api=''
         ```
 
-    but be sure to change the contract address of the [json](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/signetfrontend/constants/abi.json) files in the signetfrontend constants
+4.  smart contract test
 
-4.  deploy
-    create a .env file and put
+    ```
+    yarn hardhat test
+
+    ```
+
+5.  smart contract deploy
+
+    hardhat local network deploy
+
+    ```
+    yarn hardhat deploy
+    ```
+
+    deploy BingoToken.sol and Bingo.sol to goerli
 
     ```
     yarn hardhat deploy --network goerli --tags bingo
     ```
 
+6.  run interface scripts
+
     ```
-    yarn hardhat deploy --network goerli --tags bingo
+    yarn hardhat getplayers
+    yarn hardhat getplayergameboard
+    yarn hardhat getroundbingoresult
+    yarn hardhat getbingobasicdetails
+    yarn hardhat checkwinner
+
     ```
 
-5.  cd into signetapi folder Install Python packages
+7.  run monitor scripts(monitor sctips is running, feel free to test on goerli testnet)
 
-        ```sh
-        pip install requirements.txt
-        ```
+    ```
+    yarn hardhat monitor
 
-        please have your own database access ready
-        (localhost or remote)
-        and change the [setting](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/signetapi/learning/settings.py) regarding database access
+    ```
 
-        ```sh
-        python manage.py runserver
-        ```
+8.  Django rest api
+
+    ```
+    cd public-api
+
+    ```
+
+    install requirements.txt
+
+    ```
+    python manage.py migrate
+
+    ```
+
+    ```
+    python manage.py runserver
+
+    ```
+
+    you may choose [Postman](https://www.postman.com/) to test REST api
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -284,23 +316,23 @@ API are constructed based on Django, [check the files here](https://github.com/A
 
 API endpoint:
 
-[test get bingo game details](https://www.decentralizedbingogame.live/api/getbingobasicdetails/)  
+[test get bingo game details](https://www.decentralizedbingogame.live/api/getbingobasicdetails/)
 `https://www.decentralizedbingogame.live/api/getbingobasicdetails/`
 
 [test get player game board](https://www.decentralizedbingogame.live/api/getplayergameboard/0x51580828DF98f7d9Bb09a0410795183fe6183E14/1/)
 `https://www.decentralizedbingogame.live/api/getplayergameboard/<playeraddress>/<gameround>/`
 
-[test get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/2/)  
+[test get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/2/)
 `https://www.decentralizedbingogame.live/api/getplayer/<gameround>/`
 
-[test get round bingo result and winning numbers from game round](https://www.decentralizedbingogame.live/api/getroundbingoresult/2/)  
+[test get round bingo result and winning numbers from game round](https://www.decentralizedbingogame.live/api/getroundbingoresult/2/)
 `https://www.decentralizedbingogame.live/api/getroundbingoresult/<gameround>/`
 
-[check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/2/)  
+[check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/2/)
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
 
-[get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)  
-`https://www.decentralizedbingogame.live/api/get10rounddetils/`  
+[get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)
+`https://www.decentralizedbingogame.live/api/get10rounddetils/`
 \*For get all round details, will soon make it to 10 rounds of data showing, because there is no database Django using right now, will need to set up database later on to save data into bingo game database everytime when emit an event which is also for best performance for frontend.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -399,3 +431,7 @@ please dm on [twitter](https://twitter.com/lil_astr_0) if you need Goerli Testne
 [right]: https://img.shields.io/badge/]-55AAFF?style=for-the-badge&logo=&logoColor=61DAFB
 [chainlink]:https://img.shields.io/badge/chainlink-949494?style=for-the-badge&logo=chainlink&logoColor=1663be
 [chainlink-url]:https://chain.link/
+
+```
+
+```
