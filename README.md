@@ -53,7 +53,8 @@
       </ul>
     </li>
     <li><a href="#Test-Summary-and-Gas-Report">Test Summary and Gas Report</a></li>
-    <li><a href="#Interface-abi">Roadmap</a></li>
+    <li><a href="#Interface-abi">Interface-abi</a></li>
+    <li><a href="#Public-API">Public-API</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
