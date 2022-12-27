@@ -105,8 +105,4 @@ def api_get10rounddetils(request):
                 int(i+1), k).call()
             jsonobj.append(
                 {"gameround": f"{i+1}", "gameround bingo result": f"{BingoResult[0]}", "gameround winning numbers": f"{BingoResult[1]}", "player": f"{k}", "gameboard": f"{gameBoard}", "winnerstates": f"{winnerDetails[0]}", "prize": f"{winnerDetails[1]}"})
-
-    # winnerDetails = contract.functions.checkWinner(
-    #     int(gameround), playeraddress).call()
-
     return Response(jsonobj, status=200)
