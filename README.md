@@ -105,7 +105,7 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
 
-[BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol)
+[BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol): 
 Normal ERC20 standard token
 
 more infos:
