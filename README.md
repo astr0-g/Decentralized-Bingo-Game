@@ -69,15 +69,15 @@ Dencentralized Bingo Game
 
 Bingo is a luck-based game in which players match a randomized board of numbers with random numbers drawn by a host. The first player to achieve a line of numbers on their board and claim Bingo wins.
 
-[BasicBingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BasicBingoGame.sol): this is the game version for test cases
+[BasicBingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BasicBingoGame.sol): this is the game version for test cases, test for optimize gas and logic.
 
 -   Draw winners function and claim prize function are sticked together as "drawWinnerOrClaimPrize"(there is no need for automation keepers to involve for this contract)
 
--   Support 4 players in a game as default(could change on your needs)
+-   Support 4 players in a game as default(could change on game needs)
 
 -   Support unlimited multiple concurrent games
 
--   Each player pays an ERC20 entry fee, transferred on join
+-   Each player pays an ERC20 entry fee: Bingo Token, transferred on join
 
 -   Winner wins the pot of entry fees(player needs to claim their prize or bet by calling "drawWinnerOrClaimPrize" function)
 
@@ -85,17 +85,17 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Games have a minimum turn duration between draws
 
--   Admin can update the entry fee, join duration, turn duration, whether return bet and max plyer in one game
+-   Admin can update the entry fee: Bingo Token, join duration, turn duration, whether return bet and max plyer in one game
 
 [BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol): this is the game version for real world cases, which is the one deployed on Goerli testnet.
 
 -   Draw winners function "drawWinner" will be called by automation keeper
 
--   Support 4 players in a game as default(could change on your needs)
+-   Support 4 players in a game as default(could change on game needs)
 
 -   Support unlimited multiple concurrent games
 
--   Each player pays an ERC20 entry fee, transferred on join
+-   Each player pays an ERC20 entry fee: Bingo Token, transferred on join
 
 -   Winner wins the pot of entry fees, transferred on win(player needs to claim their bet back by calling "claimPrize" function)
 
@@ -103,7 +103,7 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Games have a minimum turn duration between draws
 
--   Admin can update the entry fee, join duration, turn duration, whether return bet and max plyer in one game
+-   Admin can update the entry fee: Bingo Token, join duration, turn duration, whether return bet and max plyer in one game
 
 [BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol):
 Normal ERC20 standard token
@@ -257,11 +257,11 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 ### Test Summary
 
 <p align="center" text="sm">test case 1</p>
-<p align="center" text="sm">one player achieved the bingo in the earliest round and got their the pot of entry fee</p>
+<p align="center" text="sm">one player achieved the bingo in the earliest round and got their the pot of entry fee: Bingo Token</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
 
 <p align="center" text="sm">test case 2</p>
-<p align="center" text="sm">two or more players achieved the bingo in the same earliest round and split the pot of entry fee</p>
+<p align="center" text="sm">two or more players achieved the bingo in the same earliest round and split the pot of entry fee: Bingo Token</p>
 <p align="center" text="sm">changed generated number rangn from 64 to 10 just for this test</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057129480436588554/case2.png"></p><br/>
 
@@ -341,7 +341,7 @@ API endpoints:
 [check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/2/)
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
 
-[get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)   
+[get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)  
 `https://www.decentralizedbingogame.live/api/get10rounddetils/`
 \*For get all round details, will soon make it to 10 rounds of data showing, because there is no database Django using right now, will need to set up database later on to save data into bingo game database everytime when emit an event which is also for best performance for frontend.
 
