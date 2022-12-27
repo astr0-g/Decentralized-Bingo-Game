@@ -229,26 +229,6 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
         cd public-api
 
         ```
-        
-        create a .env file and put
-
-        ```
-        providerurl=https://eth-goerli........
-        ```
-
-        install requirements.txt
-
-        ```
-        python manage.py migrate
-
-        ```
-
-        ```
-        python manage.py runserver
-
-        ```
-
-        you may choose [Postman](https://www.postman.com/) to test REST api
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
