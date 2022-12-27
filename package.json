@@ -22,5 +22,17 @@
     "dependencies": {
         "base64-sol": "^1.1.0",
         "truffle-contract-size": "^2.0.1"
+    },
+    "scripts": {
+        "keeper": "node scripts/monitor/keeper.js",
+        "monitor": "node scripts/monitor/monitor.js",
+        "getbingobasicdetails": "node scripts/interface/getBingoBasicDetails.js",
+        "getplayergameboard": "node scripts/interface/getPlayerGameBoard.js",
+        "getPlayers": "node scripts/interface/getPlayers.js",
+        "slither": "slither . --solc-remaps '@chainlink=node_modules/@chainlink' --solc-remaps '@openzeppelin=node_modules/@openzeppelin' --exclude naming-convention,external-function,low-level-calls",
+        "toolbox": "docker run -it --rm -v $PWD:/src trailofbits/eth-security-toolbox",
+        "lint": "solhint 'contracts/*.sol'",
+        "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+        "format": "prettier --write ."
     }
 }

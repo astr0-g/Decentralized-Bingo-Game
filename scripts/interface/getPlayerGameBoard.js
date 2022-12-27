@@ -22,10 +22,15 @@ async function main() {
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
     const playerGameBoard = await contract.getPlayerGameBoard(
         "0x51580828DF98f7d9Bb09a0410795183fe6183E14",
-        2
+        1
     )
-    console.log("player game board in this round is:")
+    console.log("player game board in this round 1 is:")
     display5x5matrix(playerGameBoard)
 }
 
 main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error)
+        process.exit(1)
+    })
