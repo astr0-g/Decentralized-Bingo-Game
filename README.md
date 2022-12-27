@@ -292,6 +292,10 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 <p align="center" text="sm">`drawWinner` function max gas used is the worst case that there if no winners drawed</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057139285435879444/gas-report.png"></p><br/>
 
+<p align="center" text="sm">slither report</p>
+<p align="center" text="sm">you can try yarn slither to do the test, make sure you have slither installed</p>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057184342591406152/1672122782409.jpg"></p><br/>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Interface -->
