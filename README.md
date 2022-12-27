@@ -217,18 +217,30 @@ T
 
 <p align="center" text="sm">test case 1</p>
 <p align="center" text="sm">one player achieved the bingo in the earliest round and got their the pot of entry fee</p>
-<p align="center"><img alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
 
 <p align="center" text="sm">test case 2</p>
 <p align="center" text="sm">two or more players achieved the bingo in the same earliest round and split the pot of entry fee</p>
 <p align="center" text="sm">changed generated number rango from 64 to 10 just for this test</p>
-<p align="center"><img height="200" alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057129480436588554/case2.png"></p><br/>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057129480436588554/case2.png"></p><br/>
 
 <p align="center" text="sm">test summary</p>
-<p align="center"><img height="200" alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057132420312350740/testsummary.png"></p><br/>
 
-<p align="center" text="sm">gas report</p>
-<p align="center"><img height="200" alt="signet" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
+<p align="center" text="sm">nodejs monitor with keeper log</p>
+<p align="center" text="sm">if you noticed that there is a failed transaction</p>
+<p align="center" text="sm">is because I run several monitors on the server</p>
+<p align="center" text="sm">this is the same process as pancake swap lottory</p>
+<p align="center" text="sm">call more times to ensure it is called</p>
+<p align="center" text="sm">other than not calling it</p>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133317176172574/monitorwithkeepr.png"></p><br/>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
+
+<p align="center" text="sm">test summary</p>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
+
+<p align="center" text="sm">test summary</p>
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057132420312350740/testsummary.png"></p><br/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

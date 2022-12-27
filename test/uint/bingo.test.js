@@ -282,7 +282,7 @@ function display5x5matrix(e) {
                   }
               })
 
-              it.only("four players join same game and check their awards for ten times to check accurate gas cost", async () => {
+              it("four players join same game and check their awards for ten times to check accurate gas cost", async () => {
                   for (i = 0; i < 10; i++) {
                       console.log(`No.${i + 1} Game strating...`)
                       console.log(`player 1 joinning...`)
