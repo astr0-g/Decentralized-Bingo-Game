@@ -1,7 +1,5 @@
 const creatorcontract = require("./abi.json")
 const ethers = require("ethers")
-const FormData = require("form-data")
-const fetch = require("node-fetch")
 const drawwinner = require("./keeper")
 require("dotenv").config()
 

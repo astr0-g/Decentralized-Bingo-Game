@@ -1,7 +1,5 @@
 const creatorcontract = require("./abi.json")
 const ethers = require("ethers")
-const FormData = require("form-data")
-const fetch = require("node-fetch")
 require("dotenv").config()
 const rpc = process.env.rpc
 async function main() {
