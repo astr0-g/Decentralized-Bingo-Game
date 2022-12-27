@@ -293,7 +293,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057139285435879444/gas-report.png"></p><br/>
 
 <p align="center" text="sm">slither report</p>
-<p align="center" text="sm">you can try yarn slither to do the test, make sure you have slither installed</p>
+<p align="center" text="sm">you can use yarn slither to do the test, make sure you have slither installed</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057184342591406152/1672122782409.jpg"></p><br/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -341,7 +341,8 @@ API endpoint:
 [check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/2/)
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
 
-[get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)
+[get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)   
+
 `https://www.decentralizedbingogame.live/api/get10rounddetils/`
 \*For get all round details, will soon make it to 10 rounds of data showing, because there is no database Django using right now, will need to set up database later on to save data into bingo game database everytime when emit an event which is also for best performance for frontend.
 
