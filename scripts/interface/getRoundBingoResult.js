@@ -9,8 +9,9 @@ async function main() {
     const CONTRACT_ADDRESS = creatorcontract.address
     const CONTRACT_ABI = creatorcontract.abi
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
-    const playerGameBoard = await contract.getPlayerArray(2)
-    console.log(`players in round 2 are:`, playerGameBoard)
+    const getRoundBingoResult = await contract.getRoundBingoResult(2)
+    console.log(`Bingo in round 2 is:`, getRoundBingoResult[0].toString())
+    console.log(`Winning in round 2 are:`, getRoundBingoResult[1].toString())
 }
 
 main()

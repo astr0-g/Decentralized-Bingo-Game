@@ -9,8 +9,9 @@ async function main() {
     const CONTRACT_ADDRESS = creatorcontract.address
     const CONTRACT_ABI = creatorcontract.abi
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider)
-    const playerGameBoard = await contract.getPlayerArray(2)
-    console.log(`players in round 2 are:`, playerGameBoard)
+    const winner = await contract.checkWinner(2, "0xA6162ae3A7Af9D8B4c8fb6AEc1D397BC9c29f276")
+    console.log(`winnerstates:`, winner[0].toString())
+    console.log(`prize:`, winner[1].toString())
 }
 
 main()

@@ -26,9 +26,11 @@
     "scripts": {
         "keeper": "node scripts/monitor/keeper.js",
         "monitor": "node scripts/monitor/monitor.js",
+        "checkwinner": "node scripts/interface/checkWinner.js",
         "getbingobasicdetails": "node scripts/interface/getBingoBasicDetails.js",
+        "getroundbingoresult": "node scripts/interface/getRoundBingoResult.js",
         "getplayergameboard": "node scripts/interface/getPlayerGameBoard.js",
-        "getPlayers": "node scripts/interface/getPlayers.js",
+        "getplayers": "node scripts/interface/getPlayers.js",
         "slither": "slither . --solc-remaps '@chainlink=node_modules/@chainlink' --solc-remaps '@openzeppelin=node_modules/@openzeppelin' --exclude naming-convention,external-function,low-level-calls",
         "toolbox": "docker run -it --rm -v $PWD:/src trailofbits/eth-security-toolbox",
         "lint": "solhint 'contracts/*.sol'",
