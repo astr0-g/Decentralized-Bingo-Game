@@ -228,12 +228,13 @@ T
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057132420312350740/testsummary.png"></p><br/>
 
 <p align="center" text="sm">nodejs monitor with keeper log</p>
+
+<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133317176172574/monitorwithkeepr.png"></p><br/>
 <p align="center" text="sm">if you noticed that there is a failed transaction</p>
 <p align="center" text="sm">is because I run several monitors on the server</p>
 <p align="center" text="sm">this is the same process as pancake swap lottory</p>
 <p align="center" text="sm">call more times to ensure it is called</p>
 <p align="center" text="sm">other than not calling it</p>
-<p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133317176172574/monitorwithkeepr.png"></p><br/>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
 
 <p align="center" text="sm">test summary</p>
