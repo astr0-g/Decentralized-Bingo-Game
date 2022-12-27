@@ -53,7 +53,7 @@
       </ul>
     </li>
     <li><a href="#Test-Summary-and-Gas-Report">Test Summary and Gas Report</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#Interface-abi">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -105,7 +105,7 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
 
-[BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol): 
+[BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol):
 Normal ERC20 standard token
 
 more infos:
@@ -257,22 +257,21 @@ T
 
 <!-- Interface -->
 
-## Interface
+## Interface-abi
 
 interface file of [BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol) is [abi.json](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/abi.json)
 
-scripts:   
-   
-[checkWinner](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/checkWinner.js) : for frontend to check if the player is winner  
-   
-[getBingoBasicDetails](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getBingoBasicDetails.js) : for frontend to get bingo basic details  
-   
-[getPlayerGameBoard](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getPlayerGameBoard.js) : for frontend to render player game number board  
-   
-[getPlayers](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getPlayers.js) : for frontend to get players address in a round of game  
-   
+scripts:
+
+[checkWinner](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/checkWinner.js) : for frontend to check if the player is winner
+
+[getBingoBasicDetails](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getBingoBasicDetails.js) : for frontend to get bingo basic details
+
+[getPlayerGameBoard](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getPlayerGameBoard.js) : for frontend to render player game number board
+
+[getPlayers](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getPlayers.js) : for frontend to get players address in a round of game
+
 [getRoundBingoResult](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getRoundBingoResult.js) : for frontend to get specific round of Bingo result
-   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
