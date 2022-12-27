@@ -263,7 +263,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 
 <p align="center" text="sm">test case 2</p>
 <p align="center" text="sm">two or more players achieved the bingo in the same earliest round and split the pot of entry fee: Bingo Token</p>
-<p align="center" text="sm">changed generated number rangn from 64 to 10 just for this test</p>
+<p align="center" text="sm">changed generated number range from 64 to 10 just for this test</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057129480436588554/case2.png"></p><br/>
 
 <p align="center" text="sm">test case 3</p>
