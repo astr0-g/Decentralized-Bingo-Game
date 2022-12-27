@@ -224,14 +224,15 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
     ```
 
 8.  Django rest api
-    create a .env file and put
 
-            ```
-            providerurl=https://eth-goerli........
-            ```
         ```
         cd public-api
 
+        ```
+        create a .env file and put
+
+        ```
+        providerurl=https://eth-goerli........
         ```
 
         install requirements.txt
