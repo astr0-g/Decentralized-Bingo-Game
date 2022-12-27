@@ -299,7 +299,7 @@ API endpoint:
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
 
 [get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)  
-`https://www.decentralizedbingogame.live/api/get10rounddetils/`
+`https://www.decentralizedbingogame.live/api/get10rounddetils/`   
 \*For get all round details, will soon make it to 10 rounds of data showing, because there is no database Django using right now, will need to set up database later on to save data into bingo game database everytime when emit an event which is also for best performance for frontend.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
