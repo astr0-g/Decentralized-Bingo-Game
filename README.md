@@ -253,12 +253,20 @@ T
 <p align="center" text="sm">`drawWinner` function max gas used is the worst case that there if no winners drawed</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057139285435879444/gas-report.png"></p><br/>
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ROADMAP -->
+<!-- Interface -->
 
 ## Interface
+
+interface file of [BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol) is [abi.json](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/abi.json)
+
+scripts:
+[checkWinner](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/checkWinner.js)
+[getBingoBasicDetails](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getBingoBasicDetails.js)
+[getPlayerGameBoard](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getPlayerGameBoard.js)
+[getPlayers](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getPlayers.js)
+[getRoundBingoResult](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/scripts/interface/getRoundBingoResult.js)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
