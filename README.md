@@ -52,7 +52,13 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#Test-Summary-and-Gas-Report">Test Summary and Gas Report</a></li>
+    <li>
+      <a href="#Test-Summary-and-Gas-Report">Test Summary and Gas Report</a>
+      <ul>
+        <li><a href="#Test Summary">Test Summary</a></li>
+        <li><a href="#Gas Report">Gas Report</a></li>
+      </ul>
+    </li>
     <li><a href="#Interface-abi">Interface-abi</a></li>
     <li><a href="#Public-API">Public-API</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -72,51 +78,51 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 [BasicBingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BasicBingoGame.sol): this is the game version for test cases, test for optimize gas and logic.
 
--   Draw winners function and claim prize function are sticked together as "drawWinnerOrClaimPrize"(there is no need for automation keepers to involve for this contract)
+- Draw winners function and claim prize function are sticked together as "drawWinnerOrClaimPrize"(there is no need for automation keepers to involve for this contract)
 
--   Support 4 players in a game as default(could change on game needs)
+- Support 4 players in a game as default(could change on game needs)
 
--   Support unlimited multiple concurrent games
+- Support unlimited multiple concurrent games
 
--   Each player pays an ERC20 entry fee: Bingo Token, transferred on join
+- Each player pays an ERC20 entry fee: Bingo Token, transferred on join
 
--   Winner wins the pot of entry fees(player needs to claim their prize or bet by calling "drawWinnerOrClaimPrize" function)
+- Winner wins the pot of entry fees(player needs to claim their prize or bet by calling "drawWinnerOrClaimPrize" function)
 
--   Games have a minimum join duration before start
+- Games have a minimum join duration before start
 
--   Games have a minimum turn duration between draws
+- Games have a minimum turn duration between draws
 
--   Admin can update the entry fee: Bingo Token, join duration, turn duration, whether return bet and max plyer in one game
+- Admin can update the entry fee: Bingo Token, join duration, turn duration, whether return bet and max plyer in one game
 
 [BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol): this is the game version for real world cases, which is the one deployed on Goerli testnet.
 
--   Draw winners function "drawWinner" will be called by automation keeper
+- Draw winners function "drawWinner" will be called by automation keeper
 
--   Support 4 players in a game as default(could change on game needs)
+- Support 4 players in a game as default(could change on game needs)
 
--   Support unlimited multiple concurrent games
+- Support unlimited multiple concurrent games
 
--   Each player pays an ERC20 entry fee: Bingo Token, transferred on join
+- Each player pays an ERC20 entry fee: Bingo Token, transferred on join
 
--   Winner wins the pot of entry fees, transferred on win(player needs to claim their bet back by calling "claimPrize" function)
+- Winner wins the pot of entry fees, transferred on win(player needs to claim their bet back by calling "claimPrize" function)
 
--   Games have a minimum join duration before start
+- Games have a minimum join duration before start
 
--   Games have a minimum turn duration between draws
+- Games have a minimum turn duration between draws
 
--   Admin can update the entry fee: Bingo Token, join duration, turn duration, whether return bet and max plyer in one game
+- Admin can update the entry fee: Bingo Token, join duration, turn duration, whether return bet and max plyer in one game
 
 [BingoToken.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoToken.sol):
 Normal ERC20 standard token
 
 more infos:
 
--   ReturnBet sets to true as default means returns bet token amount when there is no winner for a game
--   Random numbers is generated with blockhash(block.number - 1)
--   Duplicate numbers may be drawn, but have no effect on the game
--   Boards may have duplicate numbers that can be marked by one drawn number
--   Each game number is between 0 and 64
--   Players are online to claim a game board and prize with transaction
+- ReturnBet sets to true as default means returns bet token amount when there is no winner for a game
+- Random numbers is generated with blockhash(block.number - 1)
+- Duplicate numbers may be drawn, but have no effect on the game
+- Boards may have duplicate numbers that can be marked by one drawn number
+- Each game number is between 0 and 64
+- Players are online to claim a game board and prize with transaction
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -138,15 +144,15 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 
 ### Prerequisites
 
--   npm
+- npm
 
-    ```sh
-    npm install npm@latest -g
-    ```
+  ```sh
+  npm install npm@latest -g
+  ```
 
--   python  
-    python version >= 3.7.9  
-    Download from [here](https://www.python.org/downloads/)
+- python  
+  python version >= 3.7.9  
+  Download from [here](https://www.python.org/downloads/)
 
 ### Installation
 
@@ -283,7 +289,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 <p align="center" text="sm">Call interface test</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057138073458188379/callinterfacetest.png"></p><br/>
 
-### Gas-Report
+### Gas Report
 
 <p align="center" text="sm">gas report</p>
 <p align="center" text="sm">`drawWinner` function max gas used is the worst case that there is no winners drawed</p>
