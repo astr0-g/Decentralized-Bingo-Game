@@ -286,7 +286,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 ### Gas-Report
 
 <p align="center" text="sm">gas report</p>
-<p align="center" text="sm">`drawWinner` function max gas used is the worst case that there if no winners drawed</p>
+<p align="center" text="sm">`drawWinner` function max gas used is the worst case that there is no winners drawed</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057139285435879444/gas-report.png"></p><br/>
 
 <p align="center" text="sm">slither report</p>
