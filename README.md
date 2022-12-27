@@ -55,8 +55,8 @@
     <li>
       <a href="#Test-Summary-and-Gas-Report">Test Summary and Gas Report</a>
       <ul>
-        <li><a href="#Test Summary">Test Summary</a></li>
-        <li><a href="#Gas Report">Gas Report</a></li>
+        <li><a href="#Test-Summary">Test Summary</a></li>
+        <li><a href="#Gas-Report">Gas Report</a></li>
       </ul>
     </li>
     <li><a href="#Interface-abi">Interface-abi</a></li>
@@ -261,7 +261,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 
 ## Test-Summary-and-Gas-Report
 
-### Test Summary
+### Test-Summary
 
 <p align="center" text="sm">test case 1</p>
 <p align="center" text="sm">one player achieved the bingo in the earliest round and got their the pot of entry fee: Bingo Token</p>
@@ -289,7 +289,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 <p align="center" text="sm">Call interface test</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057138073458188379/callinterfacetest.png"></p><br/>
 
-### Gas Report
+### Gas-Report
 
 <p align="center" text="sm">gas report</p>
 <p align="center" text="sm">`drawWinner` function max gas used is the worst case that there is no winners drawed</p>
