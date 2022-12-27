@@ -87,7 +87,7 @@ Bingo is a luck-based game in which players match a randomized board of numbers 
 
 -   Admin can update the entry fee, join duration, turn duration, whther return bet and max plyer in one game
 
-[BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol): this is the game version for real world cases
+[BingoGame.sol](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/contracts/BingoGame.sol): this is the game version for real world cases, which is the one deployed on Goerli testnet.
 
 -   Draw winners function "drawWinner" will be called by automation keeper
 
@@ -133,7 +133,10 @@ This section contains frameworks/libraries used to bootstrap Bingo Game, it incl
 
 ## Getting Started
 
-T
+Clone the repo
+`sh
+    git clone https://github.com/Astr0-G/Decentralized-Bingo-Game.git
+    `
 
 ### Prerequisites
 
@@ -151,10 +154,7 @@ T
 
 ###### you can skip 3-5 if you are only testing frontend
 
-1.  Clone the repo
-    ```sh
-    git clone https://github.com/Astr0-G/Decentralized-Bingo-Game.git
-    ```
+1.
 2.  Install node_modules
 
     ```sh
