@@ -98,7 +98,6 @@ contract Bingo {
         if (block.timestamp < gameRounds[_gameRound].startTime + joinDuration + turnDuration)
             revert error__drawsNotStared();
         if (gameRounds[_gameRound].drawing) revert error__winnerIsDRAWING();
-
         /// @notice Start drawing
         gameRounds[_gameRound].drawing = true;
         _;
@@ -367,6 +366,13 @@ contract Bingo {
         /// @notice Save winning numbers into contract
         gameRounds[_gameRound].winningNumders = array;
         return (array);
+    }
+
+    /// @notice Get players addresses array of this round
+    /// @dev This function is for frontend to get the players addresses in each round
+    /// @param _gameRound the round of game id
+    function getPlayerArray(uint256 _gameRound) public view returns (address[] memory) {
+        return (gameRounds[_gameRound].playersArray);
     }
 
     /// @notice get player stage of this round and timestamp right after join duration ends

@@ -27,8 +27,8 @@
     <br/><br />
     <br />
     dencentralized bingo game on Goerli Testnet Network <br/>
-    <a href="https://goerli.etherscan.io/address/0xc26abaa046bed3ab51f0d50081a325032c266a90#code">Bingo game smart contract</a><br/>
-    <a href="https://goerli.etherscan.io/address/0x77262277047f38f647c5b7eed177767ed0777d83#code">Bingo Token smart contract</a><br/>
+    <a href="https://goerli.etherscan.io/address/0xF7756666306c26c82DA2650DFeD9636Bc6676B61#code">Bingo game smart contract</a><br/>
+    <a href="https://goerli.etherscan.io/address/0x711601a3dc57377e6567c89dcd55ca05baca126b#code">Bingo Token smart contract</a><br/>
     <a href="https://github.com/Astr0-G/Decentralized-Bingo-Game/tree/main/deployments/goerli"><strong>Explore the deployment data »</strong></a>
     <br />
     
@@ -180,22 +180,21 @@ T
         COINMARKET_KEY=
         MUMBAI_RPC_URL=https://polygon-mumbai.infura.io/v3/12345
         ARB_RPC_URL=https://arbitrum-mainnet.infura.io/v3/12345
+        rpc=''
+        api=''
         ```
 
     but be sure to change the contract address of the [json](https://github.com/Astr0-G/Decentralized-Bingo-Game/blob/main/signetfrontend/constants/abi.json) files in the signetfrontend constants
 
-4.  cd into signetmonitor
+4.  deploy
     create a .env file and put
 
     ```
-    rpc=''
-    api=''
+    yarn hardhat deploy --network goerli --tags bingo
     ```
 
-    ```sh
-    node listenFollowed.js
-    node listenSendmessage.js
-    node listenUnFollowed.js
+    ```
+    yarn hardhat deploy --network goerli --tags bingo
     ```
 
 5.  cd into signetapi folder Install Python packages
