@@ -229,6 +229,7 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
         cd public-api
 
         ```
+        
         create a .env file and put
 
         ```
