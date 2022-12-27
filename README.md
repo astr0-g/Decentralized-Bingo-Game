@@ -287,10 +287,10 @@ API endpoint:
 `https://www.decentralizedbingogame.live/api/getbingobasicdetails/`
 
 [test get player game board](https://www.decentralizedbingogame.live/api/getplayergameboard/0x51580828DF98f7d9Bb09a0410795183fe6183E14/1/)
-  
+
 `https://www.decentralizedbingogame.live/api/getplayergameboard/<playeraddress>/<gameround>/`
 
-[test get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/2/):  
+[test get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/2/)  
 `https://www.decentralizedbingogame.live/api/getplayer/<gameround>/`
 
 [test get round bingo result and winning numbers from game round](https://www.decentralizedbingogame.live/api/getroundbingoresult/2/)  
