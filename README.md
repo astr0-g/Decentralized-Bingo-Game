@@ -215,7 +215,7 @@ T
 
 ## Test-Summary-and-Gas-Report
 
-# Test Summary
+### Test Summary
 <p align="center" text="sm">test case 1</p>
 <p align="center" text="sm">one player achieved the bingo in the earliest round and got their the pot of entry fee</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057061355330478131/case1.png"></p><br/>
@@ -243,7 +243,7 @@ T
 <p align="center" text="sm">other than not calling it</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
 
-# Gas-Report
+### Gas-Report
 <p align="center" text="sm">test summary</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057133605266145371/keeperCallDrawfunction.png"></p><br/>
 
