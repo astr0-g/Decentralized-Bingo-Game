@@ -2,7 +2,7 @@
 pragma solidity 0.8.8;
 
 /// @title Bingo Game Smart Contract
-/// @author astro Ge
+/// @author astro
 /// @notice You can use this contract for playing bingo game
 
 import "./Interface/ICER20.sol";
