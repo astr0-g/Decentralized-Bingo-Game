@@ -332,16 +332,16 @@ API endpoints:
 [get bingo game details](https://www.decentralizedbingogame.live/api/getbingobasicdetails/)
 `https://www.decentralizedbingogame.live/api/getbingobasicdetails/`
 
-[get player game board](https://www.decentralizedbingogame.live/api/getplayergameboard/0x51580828DF98f7d9Bb09a0410795183fe6183E14/1/)
+[get player game board](https://www.decentralizedbingogame.live/api/getplayergameboard/0x51580828DF98f7d9Bb09a0410795183fe6183E14/34/)
 `https://www.decentralizedbingogame.live/api/getplayergameboard/<playeraddress>/<gameround>/`
 
-[get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/2/)
+[get player from gameround](https://www.decentralizedbingogame.live/api/getplayer/34/)
 `https://www.decentralizedbingogame.live/api/getplayer/<gameround>/`
 
-[get round bingo result and winning numbers from game round](https://www.decentralizedbingogame.live/api/getroundbingoresult/2/)
+[get round bingo result and winning numbers from game round](https://www.decentralizedbingogame.live/api/getroundbingoresult/34/)
 `https://www.decentralizedbingogame.live/api/getroundbingoresult/<gameround>/`
 
-[check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/2/)
+[check if player is winner in the game round](https://www.decentralizedbingogame.live/api/checkwinner/0x51580828DF98f7d9Bb09a0410795183fe6183E14/34/)
 `https://www.decentralizedbingogame.live/api/checkwinner/<playeraddress>/<gameround>/`
 
 [get all round detils](https://www.decentralizedbingogame.live/api/get10rounddetils/)  
