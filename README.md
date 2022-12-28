@@ -286,6 +286,9 @@ There are four parts of the files: [smart contract files](https://github.com/Ast
 <p align="center" text="sm">keeper call drawWinner function 6 mins after the game round created</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057388369941897297/WX20221227-1201472x.png"></p><br/>
 
+<p align="center" text="sm">Winner wins the pot of entry fees, transferred on win</p>
+<p align="center"><img alt="bingo" src="https://user-images.githubusercontent.com/57165451/209742844-5eff672d-484b-439f-ab17-b8571b4169bf.png"></p><br/>
+
 <p align="center" text="sm">Call interface test</p>
 <p align="center"><img alt="bingo" src="https://cdn.discordapp.com/attachments/960590776570626098/1057138073458188379/callinterfacetest.png"></p><br/>
 
